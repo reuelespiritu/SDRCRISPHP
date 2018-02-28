@@ -16,8 +16,9 @@
                 $view_result = update_fundingorganization($_POST['name'], $_POST['description'], $_POST['description'], $_POST['id']);
             }
         } else if (isset($_POST['deactivate'])) {
-            $view_result = delete_fundingorganizationtype(($_POST['deactivate']));
+            $view_result = delete_fundingorganization(($_POST['deactivate']));
         }
+        
         ?>
     </head>
     <!-- END HEAD -->
@@ -87,14 +88,33 @@
                                                         </div>
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
+                                                                
+                                                                    <?php
+                                                                if (isset($_POST['update'])) {
+
+                                                                    $query_result = getupdate_fundingorganization($_POST['update']);
+                                                                    if ($query_result != FALSE) {
+                                                                        foreach ($query_result as $arr_result) {
+                                                                            $id = $arr_result['budget_categoryID'];
+                                                                            $name = $arr_result['name'];
+                                                                            $description = $arr_result['description'];
+                                                                        }
+                                                                    }
+                                                                } else {
+
+                                                                    $name = "";
+                                                                    $description = "";
+                                                                    $id = "";
+                                                                }
+                                                                ?>
                                                                 <form class="col-md-10" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="name"  required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="name"  value="<?php echo $name; ?>" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Description</label>
-                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="description" required></textarea>
+                                                                        <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="description" required><?php echo $description; ?></textarea>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Select Funding Organization Type</label>
@@ -173,7 +193,7 @@
                                                                                     <td>' . $arr_result['fundingorganization_name'] . '</td>
                                                                                     <td>' . $arr_result['description'] . '</td>
                                                                                     <td><button name="deactivate" value="' . $arr_result['fundingorganizationID'] . '" class="btn btn-danger btn-lg"/><span class="glyphicon glyphicon-trash"></span></td>
-                                                                                     <td><button name="MEID" value="' . $arr_result['fundingorganizationID'] . '" class="btn btn-warning btn-lg"/><span class="glyphicon glyphicon-wrench"></span></td>'
+                                                                                     <td><button name="update" value="' . $arr_result['fundingorganizationID'] . '" class="btn btn-warning btn-lg"/><span class="glyphicon glyphicon-wrench"></span></td>'
                                                                                         . '      </tr>';
                                                                                     }
                                                                                 }
@@ -203,6 +223,12 @@
                         </div>
                         <!-- END PAGE CONTENT BODY -->
                         <!-- END CONTENT BODY -->
+                        
+                        
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Funding Organization Registered" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="confirm">Default Alert</div>
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Funding Organization Deleted" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="delete">Default Alert</div>
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Funding Organization Updated" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="update">Default Alert</div>
+
                     </div>
                     <!-- END CONTENT -->
                     <!-- BEGIN QUICK SIDEBAR -->
@@ -229,9 +255,26 @@
     <script src="assets/global/plugins/ie8.fix.min.js"></script> 
     <![endif]-->
         <?php include_once ('dependencies/bottom_resources.php'); ?>   
-        <script>$(document).ready(function () {
-                $('.js-example-basic-single').select2();
-            });</script>
+     
+
+
+        <script>s
+
+<?php
+if (isset($view_result) && $view_result == 1) {
+    echo'$(document).ready(function(){ 
+               document.getElementById("confirm").click();
+});';
+} else if (isset($view_result) && $view_result == 2) {
+    echo'$(document).ready(function(){ 
+               document.getElementById("delete").click();
+});';
+} else if (isset($view_result) && $view_result == 3) {
+    echo'$(document).ready(function(){ 
+               document.getElementById("update").click();
+});';
+}
+?></script>
     </body>
 
 </html>

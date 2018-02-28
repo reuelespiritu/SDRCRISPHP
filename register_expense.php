@@ -166,8 +166,8 @@
                                                                                     <td>' . $arr_result['expensecategoryname'] . '</td>
                                                                                     <td>' . $arr_result['expensemethod'] . '</td>
                                                                                     <td>' . $arr_result['remarks'] . '</td>
-                                                                                    <td>' . $arr_result['amount'] . '</td>
-                                                                                    . </tr>';
+                                                                                    <td align="right">' . $arr_result['amount'] . '</td>
+                                                                                    </tr>';
                                                                                 }
                                                                             }
                                                                             ?>
@@ -175,6 +175,9 @@
                                                                     </table>
                                                                 </div>
                                                             </div>
+                                                                                                                            <br>
+                                                                                                                            <B>Total Budget Amount: <?php $amt= generatetotalexpense(); echo $amt; ?></B>
+                                                              
                                                         </div>
                                                         <ul class="list-separated list-inline-xs hide">
 
@@ -190,6 +193,9 @@
                         </div>
                         <!-- END PAGE CONTENT BODY -->
                         <!-- END CONTENT BODY -->
+                        
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Expense Registered" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="confirm">Default Alert</div>
+            
                     </div>
                     <!-- END CONTENT -->
                     <!-- BEGIN QUICK SIDEBAR -->
@@ -215,9 +221,16 @@
     <script src="assets/global/plugins/ie8.fix.min.js"></script> 
     <![endif]-->
 <?php include_once ('dependencies/bottom_resources.php'); ?>   
-    <script>$(document).ready(function () {
-            $('.js-example-basic-single').select2();
-        });</script>
+     <script>
+        
+<?php
+if(isset($view_result)&&$view_result==TRUE)
+echo'$(document).ready(function(){ 
+                document.getElementById("confirm").click();
+            });';
+
+
+?></script>
 </body>
 
 </html>

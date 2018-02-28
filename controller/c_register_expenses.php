@@ -8,8 +8,8 @@ require_once 'model/m_expense_category.php';
 function submit_expense($amount, $remarks, $project, $expensecategory, $expensemethod) {
 
     $controller_result = setprojectexpenses($amount, $remarks, $project, $expensecategory, $expensemethod);
-    echo "<script type='text/javascript'>alert('Expense successfully recorded!');</script>";
-}
+  
+    return TRUE; }
 
 function generate_all_expenses() {
 
@@ -45,4 +45,14 @@ function getupdate_expensecategory($update) {
 
 function submitupdate_expensecategory($name, $description, $id) {
     $controller_result = updateexpensecategory($name, $description, $id);
+}
+
+
+function generatetotalexpense() {
+    $budgetsum = getexpensesum();
+    foreach ($budgetsum as $arr_result) {
+   $budget=$arr_result['amount'];
+        }
+
+    return $budget;
 }

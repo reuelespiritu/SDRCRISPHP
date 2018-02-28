@@ -103,7 +103,7 @@ function getalluserswithoutusertype() {
 
     require_once('dbconnect.php');
 
-    $query = "SELECT * FROM sdrcris.user WHERE userID NOT IN (SELECT userID FROM project_user) AND usertype!=1;";
+    $query = "SELECT * FROM sdrcris.user WHERE userID NOT IN (SELECT userID FROM project_user) AND usertype is NULL AND active = 1;";
     $con = createconnection();
 
     if (isset($query)) {

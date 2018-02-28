@@ -106,9 +106,10 @@
                                                                         
                                                                         
                                                                                 <div class="form-group">
-                                                                                    
+                                                                               
                                                                             <label for="exampleInputEmail1">Funding Organization</label>
-                                                                        <select name="fund" class="js-example-basic-single">
+                                                                             <br>  <select name="fund" class="js-example-basic-single" style="width:100%">
+                                                                
                                                                            <?php
                                                                                 $query_result = generate_all_fundingorganization();
                                                                                 if ($query_result != FALSE) {
@@ -152,6 +153,8 @@
 
                             <!-- END PAGE CONTENT BODY -->
                             <!-- END CONTENT BODY -->
+                       
+                        
                         </div>
                         <!-- END CONTENT -->
                         <!-- BEGIN QUICK SIDEBAR -->
@@ -179,9 +182,12 @@
 <script src="assets/global/plugins/ie8.fix.min.js"></script> 
 <![endif]-->
       <?php include_once ('dependencies/bottom_resources.php');?>  
-        <script>$(document).ready(function() {
+        <script>
+        
+        $(document).ready(function() {
     $('.js-example-basic-single').select2();
-});</script>
+});
+        </script>
     </body>
 
 </html>

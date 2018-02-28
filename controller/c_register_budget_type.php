@@ -6,7 +6,7 @@ require_once 'model/m_budget_category.php';
 function submit_budgetcategory($name, $description) {
 
     $controller_result = setbudgetcategory($name, $description);
-    echo "<script type='text/javascript'>alert('Input successfully recorded!');</script>";
+    return 1;
 }
 
 function generate_all_budgetcategory() {
@@ -19,6 +19,7 @@ function generate_all_budgetcategory() {
 function delete_budgettype($deactivate) {
 
     $controller_result = deactivatebudgetcategory($deactivate);
+    return 2;
 }
 
 function getupdate_budgettype($update) {
@@ -29,4 +30,5 @@ function getupdate_budgettype($update) {
 
 function submitupdate_budgettype($name, $description, $id) {
     $controller_result = updatebudgetcategory($name, $description, $id);
+    return 3;
 }

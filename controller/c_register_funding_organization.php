@@ -7,7 +7,8 @@ require_once 'model/m_funding_organization_type.php';
 function submit_fundingorganization($name, $description, $type) {
 
     $controller_result = setfunding($name, $description, $type);
-    echo "<script type='text/javascript'>alert('Funding organization successfully added into the system!');</script>";
+   return 1;
+   
 }
 
 function generate_all_fundingorganization() {
@@ -27,9 +28,18 @@ function generate_all_fundingorganizationtype() {
 function delete_fundingorganization($deactivate) {
 
     $controller_result = deactivatefunding($deactivate);
+    return 2;
 }
 
 function update_fundingorganization($name, $description, $type, $id) {
 
     $controller_result = updatefunding($name, $description, $type, $id);
+    return 3;
+}
+
+
+function getupdate_fundingorganization($update) {
+    $result = array();
+    $result = getfundingbyid($update);
+    return $result;
 }

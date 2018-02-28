@@ -82,3 +82,32 @@ function getexpensesbyid($id) {
     }
     $con->close();
 }
+
+
+function getexpensesum() {
+
+
+
+    require_once('dbconnect.php');
+
+    $query = "SELECT SUM(amount) as 'amount' FROM project_expenses";
+    $con = createconnection();
+
+    if (isset($query)) {
+        $result = mysqli_query($con, $query);
+
+
+        $num_rows = mysqli_num_rows($result);
+        $query_result = array();
+
+        if ($num_rows > 0) {
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                $query_result[] = $row;
+            }
+            return $query_result;
+        } else {
+            return FALSE;
+        }
+    }
+    $con->close();
+}

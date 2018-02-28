@@ -3,7 +3,7 @@
 function getallhealthinfrastructuredamages() {
     require_once('dbconnect.php');
 
-    $query = "SELECT * FROM health_infrastructure_damages WHERE active = 1";
+    $query = "SELECT hid.*, CONCAT(u.firstname, u.lastname) FROM health_infrastructure_damages hid JOIN user u ON hid.uploadedBy=u.userID WHERE active = 1";
     $con = createconnection();
 
     if (isset($query)) {
@@ -25,11 +25,11 @@ function getallhealthinfrastructuredamages() {
     $con->close();
 }
 
-function uploadhealthinfrastructuredamages($projectID,$infrastructureDamage,$infrastructureDamageType,$hospital,$hospitalLevel,$waterSystemDamage,$waterSystemDamageID,$uploadedBy) {
+function uploadhealthinfrastructuredamages($projectID,$year,$month,$region,$municipality,$city,$barangay,$incident,$number_of_incidents,$infrastructureDamageType,$hospital,$hospitalLevel,$waterSystemDamage,$waterSystemDamageID,$uploadedBy) {
     $datenow = date("Y-m-d H:i:s");
     require_once('dbconnect.php');
     
-    $query = "INSERT INTO health_infrastructure_damages (projectID,infrastructureDamage,infrastructureDamageType,hospital,hospitalLevel,waterSystemDamage,waterSystemDamageID,uploadedBy,uploadDate) VALUES('$projectID','$infrastructureDamage','$infrastructureDamageType','$hospital','$hospitalLevel','$waterSystemDamage','$waterSystemDamageID','$uploadedBy','$datenow')";
+    $query = "INSERT INTO health_infrastructure_damages (projectID,year,month,region,municipality,city,barangay,incident,number_of_incidents,infrastructureDamageType,hospital,hospitalLevel,waterSystemDamage,waterSystemDamageID,uploadedBy,uploadDate) VALUES('$projectID','$year','$month','$region','$municipality','$city','$barangay','$incident','$number_of_incidents','$infrastructureDamageType','$hospital','$hospitalLevel','$waterSystemDamage','$waterSystemDamageID','$uploadedBy','$datenow')";
     $con = createconnection();
 
     if (isset($query)) {

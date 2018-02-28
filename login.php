@@ -21,23 +21,17 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN HEAD -->
 
 
-<?php
+    <?php
+    session_start();
+    require_once ('controller/c_login.php');
+    if (isset($_POST['email']) && isset($_POST['password'])) {
 
-session_start();
-$view_result=TRUE;
-require_once ('controller/c_login.php');
-if (isset($_POST['email'])&&isset($_POST['password'])){
-    
-   $view_result=login($_POST['email'], $_POST['password']);
-    
-}
-else if (isset($_POST['fn'])&&isset($_POST['mn'])&&isset($_POST['ln'])&&isset($_POST['em'])&&isset($_POST['p1'])&&isset($_POST['p2'])&&isset($_POST['spe'])){
-           
-               $view_result=submit_userform($_POST['fn'],$_POST['mn'],$_POST['ln'],$_POST['em'],$_POST['p1'],$_POST['p2'],$_POST['spe'],$_POST['mas'],$_POST['doc']);
-           
-           }
+        $view_result = login($_POST['email'], $_POST['password']);
+    } else if (isset($_POST['fn']) && isset($_POST['mn']) && isset($_POST['ln']) && isset($_POST['em']) && isset($_POST['p1']) && isset($_POST['p2']) && isset($_POST['spe'])) {
 
-?>
+        $view_result = submit_userform($_POST['fn'], $_POST['mn'], $_POST['ln'], $_POST['em'], $_POST['p1'], $_POST['p2'], $_POST['spe'], $_POST['mas'], $_POST['doc']);
+    }
+    ?>
     <head>
         <meta charset="utf-8" />
         <title>SDRC-RIS: Login</title>
@@ -62,6 +56,8 @@ else if (isset($_POST['fn'])&&isset($_POST['mn'])&&isset($_POST['ln'])&&isset($_
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN PAGE LEVEL STYLES -->
         <link href="assets/pages/css/login-2.css" rel="stylesheet" type="text/css" />
+           <link href="assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
+
         <!-- END PAGE LEVEL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
         <!-- END THEME LAYOUT STYLES -->
@@ -69,23 +65,32 @@ else if (isset($_POST['fn'])&&isset($_POST['mn'])&&isset($_POST['ln'])&&isset($_
     <!-- END HEAD -->
 
     <body class=" login">
-        <!-- BEGIN LOGO -->
+        <!-- BEGIN LOGO -->     
         <div class="logo">
             <a>
                 <img src="assets/pages/img/sdrc-logo.png" style="height: 220px;" alt="" /> </a>
         </div>
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->
-        <div class="content">
+        <div class="content">      
+            
+            
+            
+            <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Login Failed" data-message="Please check your username or password" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="fail">Default Alert</div>
+            <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Successfully Registered" data-message="Thank you for registering your information" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="registered">Default Alert</div>
+
+            
+            
+            
             <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="<?php ($_SERVER["PHP_SELF"])?>" method="post">
+            <form class="login-form" action="<?php ($_SERVER["PHP_SELF"]) ?>" method="post">
                 <div class="form-title">
                     <span class="form-title">Social Development Research Center</span>
                     <span class="form-subtitle">Research Information System</span>
                 </div>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
-                    <span> Enter any username and password. </span>
+                    <span> Please check your username. </span>
                 </div>
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
@@ -117,41 +122,41 @@ else if (isset($_POST['fn'])&&isset($_POST['mn'])&&isset($_POST['ln'])&&isset($_
             </form>
             <!-- END LOGIN FORM -->
             <!-- BEGIN FORGOT PASSWORD FORM -->
-            <form class="forget-form" action="<?php ($_SERVER["PHP_SELF"])?>" method="post">
+            <form class="forget-form" action="<?php ($_SERVER["PHP_SELF"]) ?>" method="post">
                 <div class="form-title">
                     <span class="form-title">Forgot your password ?</span><br>
                     <span class="form-subtitle"> Please contact your system admin</span>
                     <div class="form-actions">
-                    <button type="button" id="back-btn" class="btn btn-default">Back</button>
+                        <button type="button" id="back-btn" class="btn btn-default">Back</button>
+                    </div>
                 </div>
-              </div>
             </form>
             <!-- END FORGOT PASSWORD FORM -->
             <!-- BEGIN REGISTRATION FORM -->
-            <form class="register-form" action="<?php ($_SERVER["PHP_SELF"])?>" method="post">
+            <form class="register-form" action="<?php ($_SERVER["PHP_SELF"]) ?>" method="post">
                 <div class="form-title">
                     <span class="form-title">Sign Up</span>
                 </div>
                 <p class="form-subtitle"> Enter your personal details below: </p>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">First Name</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="First Name" name="fn" /> </div>
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="First Name" name="fn" required/> </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Middle Name</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="Middle Name" name="mn" /> </div>
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="Middle Name" name="mn" required/> </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Last Name</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="Last Name" name="ln" /> </div>
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="Last Name" name="ln" required/> </div>
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">Email</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="em" /> </div>
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="em" required/> </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Password</label>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Password" name="p1" /> </div>
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Password" name="p1" required/> </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="p2" /> </div>
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="p2" required/> </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Expertise</label>
                     <input class="form-control placeholder-no-fix" type="text" placeholder="Specialization" name="spe" /> </div>
@@ -173,7 +178,7 @@ else if (isset($_POST['fn'])&&isset($_POST['mn'])&&isset($_POST['ln'])&&isset($_
                     <button type="submit" id="register-submit-btn" class="btn uppercase pull-right">Submit</button>
                 </div>
             </form>
-            <!-- END REGISTRATION FORM -->
+            <!-- END REGISTRATION FORM -->        
         </div>
         <div class="copyright hide"> 2014 © Metronic. Admin Dashboard Template. </div>
         <!-- END LOGIN -->
@@ -201,17 +206,33 @@ else if (isset($_POST['fn'])&&isset($_POST['mn'])&&isset($_POST['ln'])&&isset($_
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="assets/pages/scripts/login.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS --><script src="assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+
+<script src="assets/pages/scripts/ui-sweetalert.js" type="text/javascript"></script>
+
+
+<script src="assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+
+<script src="assets/pages/scripts/ui-bootbox.min.js" type="text/javascript"></script>        
+<script src="assets/pages/scripts/ui-bootbox.js" type="text/javascript"></script>
+
         <!-- END THEME LAYOUT SCRIPTS -->
+     
         <script>
-            $(document).ready(function ()
-            {
-                $('#clickmewow').click(function ()
-                {
-                    $('#radio1003').attr('checked', 'checked');
-                });
-            })
-        </script>
+        
+<?php
+if(isset($view_result)&&$view_result==FALSE)
+echo'$(document).ready(function(){ 
+                document.getElementById("fail").click();
+            });';
+
+else if(isset($view_result)&&$view_result=="REGISTERED")
+echo'$(document).ready(function(){ 
+                document.getElementById("registered").click();
+            });';
+
+
+?></script>
     </body>
 
 </html>

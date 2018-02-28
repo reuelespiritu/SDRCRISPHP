@@ -45,6 +45,8 @@ function submit_userform($firstname, $middlename, $lastname, $email, $password1,
 
     if ($password1 == $password2) {
         $controller_result = setuser($firstname, $middlename, $lastname, $email, $password1, $specializations, $masters, $doctorate);
+    return "REGISTERED";
+        
     } else {
         return 2;
     }

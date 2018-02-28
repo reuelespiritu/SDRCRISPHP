@@ -6,7 +6,8 @@ require_once 'model/m_method_of_receivingfunding.php';
 function submit_methodofreceivingfunding($name, $description) {
 
     $controller_result = setmethodofreceivingfunding($name, $description);
-    echo "<script type='text/javascript'>alert('Input successfully recorded!');</script>";
+
+    return 1;
 }
 
 function generate_all_methodofreceivingfunding() {
@@ -19,6 +20,7 @@ function generate_all_methodofreceivingfunding() {
 function delete_methodbudget($deactivate) {
 
     $controller_result = deactivateregistermethodbudget($deactivate);
+    return 2;
 }
 
 function getupdate_methodbudget($update) {
@@ -29,4 +31,5 @@ function getupdate_methodbudget($update) {
 
 function submitupdate_methodofreceivingfunding($name, $description, $id) {
     $controller_result = updatemethodofreceivingfunding($name, $description, $id);
+    return 3;
 }

@@ -1,10 +1,8 @@
 <?php
-
-
-function getalleventdata_area(){
+function getalleventdata(){
      require_once('dbconnect.php');
 
-    $query = "SELECT * FROM event_data_per_area WHERE active = 1";
+    $query = "SELECT ed.*,CONCAT(u.firstname, u.lastname) FROM event_data ed JOIN user u ON ed.uploadedBy=u.userID WHERE ed.active = 1";
     $con = createconnection();
 
     if (isset($query)) {
@@ -26,24 +24,20 @@ function getalleventdata_area(){
     $con->close();
 }
 
-
-function uploadeventdata_area($projectID,$incident,$year,$municipality,$barangay,$number_of_deaths,$uploadedBy){
+function upload_eventdata($projectID,$region,$year,$month,$incident,$municipality,$barangay,$number_of_deaths,$number_of_incidents,$uploadedBy){
     $datenow = date("Y-m-d H:i:s");
     require_once('dbconnect.php');
 
-    $query = "INSERT INTO event_data_per_area (projectID,incident,year,municipality,barangay,number_of_deaths,uploadedBy,uploadDate) VALUES('$projectID','$incident','$year','$municipality','$barangay','$number_of_deaths','$uploadedBy','$datenow')";
-      $con = createconnection();
+    $query = "INSERT INTO event_data (projectID,region,year,month,incident,municipality,barangay,number_of_deaths,number_of_incidents,uploadedBy,uploadDate) VALUES('$projectID','$region','$year','$month','$incident','$municipality','$barangay','$number_of_deaths','$number_of_incidents','$uploadedBy','$datenow')";
+    $con = createconnection();
 
     if (isset($query)) {
         $result = mysqli_query($con, $query);
 
         return $query;
     } else {
-
         return $query;
     }
 }
-
-
 ?>
 

@@ -3,14 +3,14 @@
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
 
-    <?php include_once ('controller/c_collection_upload_eventdataarea.php'); ?>  
+    <?php include_once ('controller/c_collection_upload_eventdata.php'); ?>  
     <head>
         <?php
         include_once ('dependencies/top_resources.php');
       if (isset($_FILES['fileupload']) ) {
             $imgData = $_FILES['fileupload'];
        
-            if ($_FILES['fileupload']['name'] == "EVENT_DATA_PER_AREA.csv"){$view_result = submit_eventdata_area($_SESSION['project'], $imgData, $_SESSION['userid']);
+            if ($_FILES['fileupload']['name'] == "EVENT_DATA.csv"){$view_result = submit_eventdata_area($_SESSION['project'], $imgData, $_SESSION['userid']);
             }
 else{                    echo "<script type='text/javascript'>alert('Please upload the standard file!');</script>";}
 
@@ -112,6 +112,18 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                                                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City" name="city" required>
                                                                     </div>
                                                                     <div class="form-group">
+                                                                        <label for="exampleInputEmail">Barangay</label>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Barangay" name="barangay" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail">Municipality</label>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Municipality" name="municipality" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail">Region</label>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Region" name="region" required>
+                                                                    </div>
+                                                                    <div class="form-group">
                                                                         <label for="single" class="control-label">Incident</label>
                                                                         <select id="single" class="form-control select2" name="incident" >
                                                                             <optgroup label="Environment">
@@ -132,14 +144,7 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                                                             </optgroup>
                                                                         </select>
                                                                     </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail">Municipality</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="municipality" placeholder="Municipality" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail">Barangay</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="barangay" placeholder="Barangay" required>
-                                                                    </div>
+                                                                  
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail">No. of Deaths</label>
                                                                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="numofdeaths" placeholder="No. of Deaths" required>

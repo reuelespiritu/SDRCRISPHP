@@ -8,10 +8,11 @@
         <?php include_once ('dependencies/top_resources.php'); ?>   
 
         <?php
-        if (isset($_POST['amount']) && isset($_POST['expensemethod']) && isset($_POST['expensecategory'])) {
+        if (isset($_POST['amount']) && isset($_POST['budgetmethod']) && isset($_POST['budgetcategory'])) {
 
             $project = $_SESSION['project'];
-            $view_result = submit_expense($_POST['amount'], $_POST['remarks'], $project, $_POST['expensecategory'], $_POST['expensemethod']);
+            $view_result = submit_budget($_POST['amount'], $_POST['remarks'], $project, $_POST['budgetcategory'], $_POST['budgetmethod']);
+            
         }
         ?>   
 
@@ -85,25 +86,25 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
 
-                                                                <form class="col-md-10">
-                                                                    <div class="form-group">
+                                                                   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="col-md-10">
+         <div class="form-group">
                                                                         <label for="exampleInputEmail1">Amount</label>
-                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Amount" required>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Amount" name="amount" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Remarks on Budget</label>
-                                                                        <textarea row="3" col="10" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Remarks" required></textarea>
+                                                                        <textarea row="3" col="10" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Remarks" name="remarks" required></textarea>
 
                                                                     </div>
 
                                                                     <div class="form-group">
                                                                         <label for="single" class="control-label">Budget Releasing Method</label>
-                                                                        <select id="single" class="form-control select2">
+                                                                        <select id="single" class="form-control select2" name="budgetmethod">
                                                                             <?php
                                                                             $query_result = generate_all_budgetmethod();
                                                                             if ($query_result != FALSE) {
                                                                                 foreach ($query_result as $arr_result) {
-                                                                                    echo'<option value="' . $arr_result['expensemethodID'] . '">' . $arr_result['name'] . '</option>';
+                                                                                    echo'<option value="' . $arr_result['registration_methodID'] . '">' . $arr_result['name'] . '</option>';
                                                                                 }
                                                                             }
                                                                             ?>
@@ -112,12 +113,12 @@
 
                                                                     <div class="form-group">
                                                                         <label for="single" class="control-label">Budget Category</label>
-                                                                        <select id="single" class="form-control select2">
+                                                                        <select id="single" class="form-control select2" name="budgetcategory">
                                                                             <?php
                                                                             $query_result = generate_all_budgetcategory();
                                                                             if ($query_result != FALSE) {
                                                                                 foreach ($query_result as $arr_result) {
-                                                                                    echo'<option value="' . $arr_result['expensemethodID'] . '">' . $arr_result['name'] . '</option>';
+                                                                                    echo'<option value="' . $arr_result['budget_categoryID'] . '">' . $arr_result['name'] . '</option>';
                                                                                 }
                                                                             }
                                                                             ?>
@@ -158,14 +159,14 @@
                                                                                 <th width="10%">Category</th>
                                                                                 <th width="10%">Type</th>
                                                                                 <th width="50%">Remarks</th>
-                                                                                <th width="20%">Amount</th>
+                                                                                <th width="20%" align="right">Amount</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tfoot>
                                                                             <tr></tr>
                                                                         </tfoot>
                                                                         <tbody>
-                                                                            <tr>   
+                                                                            
                                                                                 <?php
                                                                                 $query_result = generate_all_budget();
                                                                                 if ($query_result != FALSE) {
@@ -175,15 +176,18 @@
                                                                                     <td>' . $arr_result['budgetcategoryname'] . '</td>
                                                                                     <td>' . $arr_result['budgetmethodname'] . '</td>
                                                                                     <td>' . $arr_result['remarks'] . '</td>
-                                                                                    <td>' . $arr_result['amount'] . '</td> 
-                                                                                                   . </tr>';
+                                                                                    <td align="right">' . $arr_result['amount'] . '</td> 
+                                                                               </tr>';
                                                                                     }
                                                                                 }
                                                                                 ?>
-                                                                            </tr>
                                                                         </tbody>
                                                                     </table>
-                                                                </div>
+                                                                    
+                                                                 </div>
+                                                                <br>
+                                                                     <B>Total Budget Amount: <?php $amt=generatetotalbudget(); echo $amt; ?></B>
+                                                              
                                                             </div>
                                                         </div>
                                                         <ul class="list-separated list-inline-xs hide">
@@ -193,6 +197,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
+                                            
                                         </div>
 
                                     </div>
@@ -204,6 +210,9 @@
                         </div>
                         <!-- END PAGE CONTENT BODY -->
                         <!-- END CONTENT BODY -->
+                        
+                                                <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Budget Registered" data-message="The budget you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="confirm">Default Alert</div>
+
                     </div>
                     <!-- END CONTENT -->
                     <!-- BEGIN QUICK SIDEBAR -->
@@ -230,9 +239,16 @@
 <script src="assets/global/plugins/ie8.fix.min.js"></script> 
 <![endif]-->
     <?php include_once ('dependencies/bottom_resources.php'); ?>   
-    <script>$(document).ready(function () {
-            $('.js-example-basic-single').select2();
-        });</script>
+      <script>
+        
+<?php
+if(isset($view_result)&&$view_result==TRUE)
+echo'$(document).ready(function(){ 
+                document.getElementById("confirm").click();
+            });';
+
+
+?></script>
 </body>
 
 </html>

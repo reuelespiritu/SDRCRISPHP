@@ -6,7 +6,7 @@ require_once 'model/m_method_of_expense.php';
 function submit_methodofexpense($name, $description) {
 
     $controller_result = setmethodofexpense($name, $description);
-    echo "<script type='text/javascript'>alert('Input successfully recorded!');</script>";
+     return 1;
 }
 
 function generate_all_methodofexpense() {
@@ -19,6 +19,7 @@ function generate_all_methodofexpense() {
 function delete_methodexpense($deactivate) {
 
     $controller_result = deactivatemethodofexpense($deactivate);
+    return 2;
 }
 
 function getupdate_expensemethod($update) {
@@ -29,4 +30,5 @@ function getupdate_expensemethod($update) {
 
 function submitupdate_expensemethod($name, $description, $id) {
     $controller_result = updatemethodofexpense($name, $description, $id);
+     return 3;
 }

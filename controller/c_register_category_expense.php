@@ -6,7 +6,7 @@ require_once 'model/m_expense_category.php';
 function submit_categoryofexpense($name, $description) {
 
     $controller_result = setexpensecategory($name, $description);
-    echo "<script type='text/javascript'>alert('Input successfully recorded!');</script>";
+    return 1;
 }
 
 function generate_all_expensecategory() {
@@ -19,6 +19,8 @@ function generate_all_expensecategory() {
 function delete_categoryexpense($deactivate) {
 
     $controller_result = deactivateexpensecategory($deactivate);
+    
+    return 2;
 }
 
 function getupdate_expensecategory($update) {
@@ -29,4 +31,6 @@ function getupdate_expensecategory($update) {
 
 function submitupdate_expensecategory($name, $description, $id) {
     $controller_result = updateexpensecategory($name, $description, $id);
+    
+    return 3;
 }

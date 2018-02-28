@@ -3,19 +3,20 @@
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
 
-    <?php include_once ('controller/c_collection_upload_healthdataregion.php'); ?>
+    <?php include_once ('controller/c_collection_upload_healthdata.php'); ?>  
     <head>
         <?php
-          include_once ('dependencies/top_resources.php');
-          if (isset($_FILES['fileupload']) ) {
+        include_once ('dependencies/top_resources.php');
+       if (isset($_FILES['fileupload']) ) {
             $imgData = $_FILES['fileupload'];
        
-            if ($_FILES['fileupload']['name'] == "HEALTH_DATA_PER_REGION.csv"){$view_result = submit_healthdata_region($_SESSION['project'], $imgData, $_SESSION['userid']);
+            if ($_FILES['fileupload']['name'] == "HEALTH_DATA.csv"){$view_result = submit_healthdata_area($_SESSION['project'], $imgData, $_SESSION['userid']);
             }
 else{                    echo "<script type='text/javascript'>alert('Please upload the standard file!');</script>";}
 
             
-            }    ?>    
+            }
+        ?>    
     </head>
     <!-- END HEAD -->
 
@@ -40,7 +41,7 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                 <div class="container">
                                     <!-- BEGIN PAGE TITLE -->
                                     <div class="page-title">
-                                        <h1>Health Data Per Region</h1>
+                                        <h1>Health Data Per Area</h1>
                                     </div>
                                     <!-- END PAGE TITLE -->
                                     <!-- BEGIN PAGE TOOLBAR -->
@@ -61,7 +62,7 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                             <i class="fa fa-circle"></i>
                                         </li>
                                         <li>
-                                            <span>Health Data Per Region</span>
+                                            <span>Health Data Per Area</span>
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
@@ -74,7 +75,7 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">UPLOAD HEALTH DATA PER REGION</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPLOAD HEALTH DATA PER AREA</span>
                                                             </div>
                                                         </div>
                                                         <div class="portlet-body">
@@ -105,6 +106,10 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                                                             <option value="RegionXIII">Caraga Region (Region XIII)</option>
                                                                             <option value="ARMM">Autonomous Region in Muslim Mindanao (ARMM)</option>
                                                                         </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail">City</label>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Number of Incidents</label>
@@ -175,13 +180,15 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">UPLOAD HEALTH DATA PER REGION CSV FILE</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPLOAD HEALTH DATA PER AREA CSV FILE</span>
                                                             </div>
                                                         </div>
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
+
                                                                 <form class="col-md-10" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" name="frmImage" enctype="multipart/form-data" >
-<div class="form-group" style="padding-bottom:40px;">
+
+                                                                    <div class="form-group" style="padding-bottom:40px;">
                                                                         <div class="col-md-3">
                                                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                                                 <div class="input-group input-large">

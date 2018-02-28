@@ -130,7 +130,7 @@ function getfundingorganizationtype($id){
     
          require_once('dbconnect.php');
          
-         $query="SELECT * FROM fundingorganization_typeID WHERE active = 1 AND fundingorganization_typeID  = '$id'";
+         $query="SELECT * FROM funding_organization_type WHERE active = 1 AND fundingorganization_typeID  = '$id'";
          $con=createconnection();
                     
                     if (isset($query)){
@@ -167,7 +167,7 @@ function updatefundingorganizationtype($name,$description,$id)
 require_once('dbconnect.php');
 
 
-$query="UPDATE funding_organization_type SET name ='$name', description='$description', fundingorganization_type=' $type' WHERE fundingorganization_typeID= '$id'";
+$query="UPDATE funding_organization_type SET name ='$name', description='$description' WHERE fundingorganization_typeID= '$id'";
 $con=createconnection();
 
 if (isset($query)){

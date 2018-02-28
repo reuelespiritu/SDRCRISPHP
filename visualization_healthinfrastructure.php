@@ -62,16 +62,16 @@
                                         <div class="page-content-inner">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                                    <!-- BEGIN TABLE PORTLET-->
                                                     <div class="portlet light ">
                                                         <div class="portlet-title">
-                                                            <div class="caption font-dark">
-                                                                <span class="caption-subject font-green-steel uppercase bold">Health Infrastructure Damages</span>
+                                                            <div class="caption caption-md">
+                                                                <i class="icon-bar-chart font-dark hide"></i>
+                                                                <span class="caption-subject font-green-steel uppercase bold">HEALTH INFRASTRUCTURE DAMAGES</span>
                                                             </div>
-                                                            <div class="tools"> </div>
                                                         </div>
                                                         <div class="portlet-body">
-                                                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                            <table class="table table-striped table-bordered table-hover" id="sample_2">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Infrastructure Damage</th>
@@ -84,6 +84,7 @@
                                                                         <th>Upload Date</th>
                                                                     </tr>
                                                                 </thead>
+                                                                <tfoot><tr></tr></tfoot>
                                                                 <tbody>
                                                                     <?php
                                                                     $query_result = generate_all_healthinfrastructure();
@@ -98,7 +99,7 @@
                                                                                     <td>' . $arr_result['waterSystemDamageID'] . '</td>
                                                                                     <td>' . $arr_result['uploadedBy'] . '</td>
                                                                                     <td>' . $arr_result['uploadDate'] . '</td>
-                                                                                     </tr>';
+                                                                                    </tr>';
                                                                         }
                                                                     }
                                                                     ?>
@@ -106,7 +107,7 @@
                                                             </table>
                                                         </div>
                                                     </div>
-                                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                                    <!-- END TABLE PORTLET-->
                                                 </div>
                                             </div>
                                         </div>

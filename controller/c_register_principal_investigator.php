@@ -36,11 +36,11 @@ function sendconfirmation($researcher, $project) {
     $result2 = array();
     $result2 = getprojectbyid($id);
 
-    foreach ($result2 as $arr_result) {
-        $name = $arr_result['name'];
-        $description = $arr_result['description'];
-        $startdate = $arr_result['startdate'];
-        $enddate = $arr_result['enddate'];
+    foreach ($result2 as $ar_result) {
+        $name = $ar_result['name'];
+        $description = $ar_result['description'];
+        $startdate = $ar_result['startdate'];
+        $enddate = $ar_result['enddate'];
     }
 
     foreach ($result as $arr_result) {

@@ -11,10 +11,7 @@ function generate_all_projectusers() {
 }
 
 function submit_project_user($user,$project){
-    foreach($user as $members){
-        $member = $members[0];
-         $controller_result= assignprojectuser($member, $project);
-    }
+    
      echo "<script type='text/javascript'>alert('Assignment to project successful!');</script>";
 }
 

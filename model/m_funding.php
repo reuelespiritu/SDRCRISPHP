@@ -37,7 +37,7 @@ function setfunding($name, $description, $type) {
 
     if (isset($query)) {
         $result = mysqli_query($con, $query);
-        return TRUE;
+        return $query;
     }
     $con->close();
 }

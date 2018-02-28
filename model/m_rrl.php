@@ -3,7 +3,7 @@
 function getallrrl() {
     require_once('dbconnect.php');
 
-    $query = "SELECT rl.*, (SELECT tl.name FROM type_of_literature tl WHERE tl.typeOfLitID=rl.typeID) AS 'type', (SELECT cl.name FROM category_literature cl WHERE cl.categoryID=rl.categoryID) AS 'category' FROM rrl rl WHERE active = 1;";
+    $query = "SELECT rl.*, (SELECT tl.name FROM type_of_literature tl WHERE tl.typeOfLitID=rl.typeID) AS 'type', (SELECT cl.name FROM category_literature cl WHERE cl.categoryID=rl.categoryID) AS 'category', CONCAT(u.firstname, u.lastname) FROM rrl rl JOIN user u ON rl.inputted_by=u.userID WHERE rl.active = 1;";
     $con = createconnection();
 
     if (isset($query)) {

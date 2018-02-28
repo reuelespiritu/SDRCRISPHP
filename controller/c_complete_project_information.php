@@ -27,7 +27,7 @@ function select_project_byuser($id) {
 function submit_project_data($projectid, $filename, $fileproperties, $data) {
 
     $controller_result = setprojectdata($projectid, $filename, $fileproperties, $data);
-     echo "<script type='text/javascript'>alert('File successfully uploaded!');</script>";
+    return 1;
 }
 
 function generateprojectdata($id) {

@@ -28,11 +28,11 @@ function getallbudget() {
     $con->close();
 }
 
-function setprojectbudget($amount, $remarks, $budgettype, $project, $budgetmethod) {
+function setprojectbudget($amount, $remarks, $project, $budgettype, $budgetmethod) {
 
     $datenow = date("Y-m-d H:i:s");
     require_once('dbconnect.php');
-    $query = "INSERT INTO project_budget (amount,remarks,date,budget_type,budget_projectID,budget_receivedThrough) VALUES ('$amount','$remarks','$datenow','$budgettype','$project','$budgetmethod]')";
+    $query = "INSERT INTO project_budget (amount,remarks,date,budget_type,budget_projectID,budget_recievedThrough) VALUES ('$amount','$remarks','$datenow','$budgettype','$project','$budgetmethod')";
     $con = createconnection();
 
     if (isset($query)) {
@@ -62,6 +62,34 @@ function getbudgetbyid($id) {
     require_once('dbconnect.php');
 
     $query = "SELECT * FROM  project_budget WHERE active = 1 AND budgetID = '$id'";
+    $con = createconnection();
+
+    if (isset($query)) {
+        $result = mysqli_query($con, $query);
+
+
+        $num_rows = mysqli_num_rows($result);
+        $query_result = array();
+
+        if ($num_rows > 0) {
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                $query_result[] = $row;
+            }
+            return $query_result;
+        } else {
+            return FALSE;
+        }
+    }
+    $con->close();
+}
+
+function getbudgetsum() {
+
+
+
+    require_once('dbconnect.php');
+
+    $query = "SELECT SUM(amount) as 'amount' FROM project_budget";
     $con = createconnection();
 
     if (isset($query)) {

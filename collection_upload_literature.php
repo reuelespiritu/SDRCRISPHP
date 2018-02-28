@@ -13,6 +13,8 @@
 
             if ($_FILES['fileupload']['name'] == "RRL.csv") {
                 $view_result = submit_literatureupload($_SESSION['project'], $imgData, $_SESSION['userid']);
+         
+                print_r($view_result);
             } else {
                 echo "<script type='text/javascript'>alert('Please upload the standard file!');</script>";
             }
@@ -25,7 +27,7 @@
             $category = rtrim($category);
             $projectid = $_SESSION['project'];
 
-            submit_form_literatureupload($projectid, $_POST['yearofpublication'], $_POST['title'], $_POST['author'], $_POST['abstract'], $category, $type, $_POST['source'], $_POST['keywords'], $_POST['source'], $_SESSION['userid']);
+            $view_result=submit_form_literatureupload($projectid, $_POST['yearofpublication'], $_POST['title'], $_POST['author'], $_POST['abstract'], $category, $type, $_POST['source'], $_POST['keywords'], $_POST['source'], $_SESSION['userid']);
         }
         ?>    
     </head>
@@ -137,6 +139,8 @@
                                                                     </div>
                                                                     <div class="pull-left">
                                                                         <input type="submit" class="btn btn-info" value="Submit Literature">
+                                                                                                                                                                    
+                                                           
                                                                     </div>
                                                                     <ul class="list-separated list-inline-xs hide">
 
@@ -182,6 +186,7 @@
 
                                                                     </ul>
                                                                 </form>
+
                                                             </div>							
                                                         </div>
                                                     </div>
@@ -195,6 +200,8 @@
                         </div>
                         <!-- END PAGE CONTENT BODY -->
                         <!-- END CONTENT BODY -->
+                                     <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Saved" data-message="The items you have uploaded has been saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="Confirm">Default Alert</div>
+
                     </div>
                     <!-- END CONTENT -->
                     <!-- BEGIN QUICK SIDEBAR -->
@@ -202,8 +209,10 @@
                         <i class="icon-login"></i>
                     </a>
                     <!-- END QUICK SIDEBAR -->
+                    
                 </div>
                 <!-- END CONTAINER -->
+    
             </div>
         </div>
         <div class="page-wrapper-row">
@@ -220,9 +229,16 @@
     <script src="assets/global/plugins/ie8.fix.min.js"></script> 
     <![endif]-->
     <?php include_once ('dependencies/bottom_resources.php'); ?>   
-    <script>$(document).ready(function () {
-            $('.js-example-basic-single').select2();
-        });</script>
+    <script>
+        
+    
+    <?php
+    if(isset($view_result)&&$view_result!=FALSE)
+    echo'$(document).ready(function(){ 
+                document.getElementById("Confirm").click();
+            });';
+?>
+    </script>
 </body>
 
 </html>

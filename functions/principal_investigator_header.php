@@ -35,12 +35,12 @@
        <ul class="dropdown-menu pull-left">
 
             <li aria-haspopup="true" class="">
-                <a href="register_budget.php" class="nav-link">
+                <a href="register_expense.php" class="nav-link">
                     <i class="glyphicon glyphicon-user"></i>Register Expense</a>
             </li>
 
             <li aria-haspopup="true" class="">
-                <a href="register_expense.php" class="nav-link">
+                <a href="register_budget.php" class="nav-link">
                     <i class="glyphicon glyphicon-th-list"></i> Register Budget</a>
             </li>
 

@@ -36,24 +36,16 @@
             </li>
 
             <li aria-haspopup="true" class="">
-                <a href="collection_upload_healthdataarea.php" class="nav-link">
-                    <i class="glyphicon glyphicon-list"></i> Health Data Per Area</a>
+                <a href="collection_upload_healthdata.php" class="nav-link">
+                    <i class="glyphicon glyphicon-list"></i> Health Data</a>
             </li>
 
-            <li aria-haspopup="true" class="">
-                <a href="collection_upload_healthdataregion.php" class="nav-link">
-                    <i class="glyphicon glyphicon-list"></i> Health Data Per Region</a>
-            </li>
 
             <li aria-haspopup="true" class="">
-                <a href="collection_upload_eventdataarea.php" class="nav-link">
-                    <i class="glyphicon glyphicon-list"></i> Event Data Per Area</a>
+                <a href="collection_upload_eventdata.php" class="nav-link">
+                    <i class="glyphicon glyphicon-list"></i> Event Data</a>
             </li>
 
-            <li aria-haspopup="true" class="">
-                <a href="collection_upload_eventdataregion.php" class="nav-link">
-                    <i class="glyphicon glyphicon-list"></i> Event Data Per Region</a>
-            </li>
 
             <li aria-haspopup="true" class="">
                 <a href="collection_upload_healthinfrastructure.php" class="nav-link">
@@ -80,23 +72,14 @@
             </li>
 
             <li aria-haspopup="true" class="">
-                <a href="visualization_healthdataarea.php" class="nav-link">
-                    <i class="glyphicon glyphicon-list"></i> Health Data Per Area</a>
+                <a href="visualization_healthdata.php" class="nav-link">
+                    <i class="glyphicon glyphicon-list"></i> Health Data</a>
             </li>
 
-            <li aria-haspopup="true" class="">
-                <a href="visualization_healthdataregion.php" class="nav-link">
-                    <i class="glyphicon glyphicon-list"></i> Health Data Per Region</a>
-            </li>
 
             <li aria-haspopup="true" class="">
-                <a href="visualization_eventdataarea.php" class="nav-link">
-                    <i class="glyphicon glyphicon-list"></i> Event Data Per Area</a>
-            </li>
-
-            <li aria-haspopup="true" class="">
-                <a href="visualization_eventdataregion.php" class="nav-link">
-                    <i class="glyphicon glyphicon-list"></i> Event Data Per Region</a>
+                <a href="visualization_eventdata.php" class="nav-link">
+                    <i class="glyphicon glyphicon-list"></i> Event Data</a>
             </li>
 
             <li aria-haspopup="true" class="">

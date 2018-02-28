@@ -146,7 +146,7 @@
                                                     <div class="portlet-title">
                                                         <div class="caption caption-md">
                                                             <i class="icon-bar-chart font-dark hide"></i>
-                                                            <span class="caption-subject font-green-steel uppercase bold">ADDITIONAL PROJECT INFORMATION</span>
+                                                            <span class="caption-subject font-green-steel uppercase bold">UPLOAD FILES TO THE SYSTEM</span>
                                                         </div>
                                                     </div>
 
@@ -155,9 +155,8 @@
 
                                                             <div class="col-md-12">
                                                                 <form class="col-md-10" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" name="frmImage" enctype="multipart/form-data" >
-                                                                  
-                                                                    <label><b>Upload a Document:</b></label><br/>
-                                                               <div class="form-group" style="padding-bottom:40px;">
+
+                                                                    <div class="form-group" style="padding-bottom:40px;">
                                                                         <div class="col-md-3">
                                                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                                                 <div class="input-group input-large">
@@ -183,18 +182,43 @@
 
                                                                     </ul>
                                                                 </form>
-      
+
                                                                 <br>
                                                                 <br>
                                                                 <br>
 
                                                             </div>
 
-<br>
+                                                            <br>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <ul class="list-separated list-inline-xs hide">
+
+                                                    </ul>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-14">
+                                                <div class="portlet light">
+                                                    <div class="portlet-title">
+                                                        <div class="caption caption-md">
+                                                            <i class="icon-bar-chart font-dark hide"></i>
+                                                            <span class="caption-subject font-green-steel uppercase bold">FILES UPLOADED IN THE SYSTEM</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="portlet-body">
+                                                        <div class="row list-separated">
+
                                                             <div class="col-md-12">
 
-     <label><b>Files Uploaded in the System:</b></label><br/>
-                                                               
+
                                                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                                                     <thead>
                                                                         <tr>
@@ -248,9 +272,7 @@
                                                 </div>
 
                                             </div>
-                                        </div
-
-
+                                        </div>
 
 
                                     </div>
@@ -267,6 +289,9 @@
                         </div>
                         <!-- END PAGE CONTENT BODY -->
                         <!-- END CONTENT BODY -->
+                        
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="FILE UPLOADED" data-message="The file has succesfully been uploaded to the system" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="confirm">Default Alert</div>
+                        
                     </div>
                     <!-- END CONTENT -->
                     <!-- BEGIN QUICK SIDEBAR -->
@@ -293,7 +318,17 @@
 <script src="assets/global/plugins/excanvas.min.js"></script> 
 <script src="assets/global/plugins/ie8.fix.min.js"></script> 
 <![endif]-->
-    <?php include_once ('dependencies/bottom_resources.php'); ?>   
+    <?php include_once ('dependencies/bottom_resources.php'); ?>  
+    
+        <script>
+
+<?php
+if (isset($view_result) && $view_result == 1) {
+    echo'$(document).ready(function(){ 
+               document.getElementById("confirm").click();
+});';}
+    
+?></script>
 </body>
 
 </html>

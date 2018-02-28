@@ -65,8 +65,9 @@ function submit_health_infrastructure_damages($projectid, $data, $userid) {
 
             $x++;
 
-            $controller_result = uploadhealthinfrastructuredamages($projectid, $infradamage, $infradamagetype, $hospital, $hospitallevel, $watersysdamage, $watersysdamagetype, $userid);
-        }
+            $controller_result =uploadhealthinfrastructuredamages($projectID, $year, $month, $region, $municipality, $city, $barangay, $incident, $number_of_incidents, $infrastructureDamageType, $hospital, $hospitalLevel, $waterSystemDamage, $waterSystemDamageID, $uploadedBy);
+            
+            }
         echo "<script type='text/javascript'>alert('Health Infrastructure Damages successfully uploaded!');</script>";
         
         header('Location: visualization_healthinfrastructure.php');

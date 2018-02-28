@@ -9,7 +9,6 @@
 
         <?php
         if (isset($_POST['deactivate'])) {
-            return $confirm = comfirm('Are you sure want to delete');
             $view_result = delete_user($_POST['deactivate']);
         } else if (isset($_POST['update'])) {
 

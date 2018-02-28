@@ -3,11 +3,10 @@
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
 
-    <?php include_once ('controller/c_visualization_healthdataarea.php'); ?>  
+    <?php include_once ('controller/c_visualization_eventdata.php'); ?>  
     <head>
         <?php
         include_once ('dependencies/top_resources.php');
-  
         ?>    
     </head>
     <!-- END HEAD -->
@@ -33,7 +32,7 @@
                                 <div class="container">
                                     <!-- BEGIN PAGE TITLE -->
                                     <div class="page-title">
-                                        <h1>Health Data Per Area</h1>
+                                        <h1>Event Data Per Area</h1>
                                     </div>
                                     <!-- END PAGE TITLE -->
                                     <!-- BEGIN PAGE TOOLBAR -->
@@ -54,7 +53,7 @@
                                             <i class="fa fa-circle"></i>
                                         </li>
                                         <li>
-                                            <span>Health Data Per Area</span>
+                                            <span>Event Data Per Area</span>
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
@@ -63,65 +62,50 @@
                                         <div class="page-content-inner">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                                    <!-- BEGIN TABLE PORTLET-->
                                                     <div class="portlet light ">
                                                         <div class="portlet-title">
-                                                            <div class="caption font-dark">
-                                                                <span class="caption-subject font-green-steel uppercase bold">Health Data Per Area</span>
+                                                            <div class="caption caption-md">
+                                                                <i class="icon-bar-chart font-dark hide"></i>
+                                                                <span class="caption-subject font-green-steel uppercase bold">EVENT DATA PER AREA</span>
                                                             </div>
-                                                            <div class="tools"> </div>
                                                         </div>
                                                         <div class="portlet-body">
-                                                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                            <table class="table table-striped table-bordered table-hover" id="sample_2">
                                                                 <thead>
                                                                     <tr>
+                                                                        <th>Incident</th>
                                                                         <th>Year</th>
-                                                                        <th>Province</th>
-                                                                        <th>City</th>
-                                                                        <th>AW Diarrhea</th>
-                                                                        <th>AB Diarrhea</th>
-                                                                        <th>Hepatitis</th>
-                                                                        <th>Typhoid Fever</th>
-                                                                        <th>Cholera</th>
-                                                                        <th>Dengue</th>
-                                                                        <th>Malaria</th>
-                                                                        <th>Leptospirosis</th>
-                                                                        <th>Tetanus</th>
+                                                                        <th>Municipality</th>
+                                                                        <th>Barangay</th>
+                                                                        <th>Number of Deaths</th>
                                                                         <th>Uploaded By</th>
-                                                                        <th>Uploaded Date</th>
+                                                                        <th>Upload Date</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tfoot>
-                                                                    <tr>
-                                                                    </tr>
-                                                                </tfoot>
+                                                                <tfoot><tr></tr></tfoot>
                                                                 <tbody>
-                                                         <?php   
-                                                                                     $query_result= generate_all_healthdataarea();
-                                                                                    if($query_result!=FALSE){
-                                                                            foreach ($query_result as $arr_result){
-                                                                                         echo'   <tr>
-                                                                                    <td>'.$arr_result['year'].'</td>
-                                                                                    <td>'.$arr_result['province'].'</td>
-                                                                                    <td>'.$arr_result['city'].'</td>
-                                                                                    <td>'.$arr_result['AWdiarrhea'].'</td>
-                                                                                    <td>'.$arr_result['ABdiarrhea'].'</td>
-                                                                                    <td>'.$arr_result['hepatitis'].'</td>
-                                                                                    <td>'.$arr_result['typhoidFever'].'</td>
-                                                                                    <td>'.$arr_result['cholera'].'</td>
-                                                                                    <td>'.$arr_result['malaria'].'</td>
-                                                                                    <td>'.$arr_result['leptospirosis'].'</td>
-                                                                                    <td>'.$arr_result['tetanus'].'</td>
-                                                                                    <td>'.$arr_result['uploadedBy'].'</td>
-                                                                                    <td>'.$arr_result['uploadDate'].'</td>
+                                                                    <?php
+                                                                    $query_result = generate_all_eventdata();
+                                                                    if ($query_result != FALSE) {
+                                                                        foreach ($query_result as $arr_result) {
+                                                                            echo'   <tr>
+                                                                                    <td>' . $arr_result['incident'] . '</td>
+                                                                                    <td>' . $arr_result['year'] . '</td>
+                                                                                    <td>' . $arr_result['municipality'] . '</td>
+                                                                                    <td>' . $arr_result['barangay'] . '</td>
+                                                                                    <td>' . $arr_result['number_of_deaths'] . '</td>
+                                                                                    <td>' . $arr_result['uploadedBy'] . '</td>
+                                                                                    <td>' . $arr_result['uploadDate'] . '</td>
                                                                                      </tr>';
-                                                      
-                                                                                    }}?>
+                                                                        }
+                                                                    }
+                                                                    ?>
                                                                 </tbody>
                                                             </table>
                                                         </div>
                                                     </div>
-                                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                                    <!-- END TABLE PORTLET-->
                                                 </div>
                                             </div>
                                         </div>
