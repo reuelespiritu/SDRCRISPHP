@@ -1,9 +1,9 @@
 <?php
 
-function getallhealth_data() {
+function getalldiseases() {
     require_once('dbconnect.php');
 
-    $query = "SELECT hd.*, (SELECT d.disease FROM diseases d WHERE d.diseaseID=hd.diseaseID) AS 'disease', (SELECT GROUP_CONCAT(way SEPARATOR ',') FROM ways_spreading ws WHERE ws.ways_spreadingID IN (SELECT dc.waysID FROM disease_communicable dc WHERE dc.diseaseID=hd.diseaseID)) AS 'communicable by' FROM health_data hd WHERE active = 1";
+    $query = "SELECT * FROM diseases WHERE active = 1";
     $con = createconnection();
 
     if (isset($query)) {
@@ -25,10 +25,10 @@ function getallhealth_data() {
     $con->close();
 }
 
-function getallhealth_data_communicable() {
+function getalldiseases_noncommunicable() {
     require_once('dbconnect.php');
 
-    $query = "SELECT hd.*, (SELECT d.disease FROM diseases d WHERE d.diseaseID=hd.diseaseID) AS 'disease' FROM health_data hd WHERE active = 1 AND hd.diseaseID IN (SELECT d.diseaseID FROM diseases d WHERE d.communicable = 1)";
+    $query = "SELECT * FROM diseases WHERE active = 1 AND communicable = 0";
     $con = createconnection();
 
     if (isset($query)) {
@@ -50,10 +50,10 @@ function getallhealth_data_communicable() {
     $con->close();
 }
 
-function getallhealth_data_noncommunicable() {
+function getalldiseases_communicable() {
     require_once('dbconnect.php');
 
-    $query = "SELECT hd.*, (SELECT d.disease FROM diseases d WHERE d.diseaseID=hd.diseaseID) AS 'disease' FROM health_data hd WHERE active = 1 AND hd.diseaseID IN (SELECT d.diseaseID FROM diseases d WHERE d.communicable = 0)";
+    $query = "SELECT * FROM diseases WHERE active = 1 AND communicable = 1";
     $con = createconnection();
 
     if (isset($query)) {
@@ -75,25 +75,10 @@ function getallhealth_data_noncommunicable() {
     $con->close();
 }
 
-function getdisease($d) {
+function add_disease($disease) {
     require_once('dbconnect.php');
-    $query = "SELECT diseaseID FROM diseases WHERE disease='$d'";
-    $con = createconnection();
 
-    if (isset($query)) {
-        $result = mysqli_query($con, $query);
-        return $result;
-    }
-    $con->close();
-}
-
-function upload_health_data($projectID, $year, $month, $region, $city, $disease, $infected, $uploadedBy) {
-    $datenow = date("Y-m-d H:i:s");
-    require_once('dbconnect.php');
-    
-    $diseaseID = getdisease($disease);
-
-    $query = "INSERT INTO health_data (projectID,year,month,region,city,diseaseID,infected,uploadedBy) VALUES('$projectID','$year','$month','$region','$city','$diseaseID','$infected','$uploadedBy','$datenow')";
+    $query = "INSERT INTO diseases (disease) VALUES('$disease')";
     $con = createconnection();
 
     if (isset($query)) {
@@ -101,9 +86,38 @@ function upload_health_data($projectID, $year, $month, $region, $city, $disease,
 
         return $query;
     } else {
-
         return $query;
     }
 }
 
+function deactivate_disease($diseaseID){
+    require_once('dbconnect.php');
+
+    $query = "UPDATE diseases SET active = 0 WHERE diseaseID = '$diseaseID' ";
+    $con = createconnection();
+
+    if (isset($query)) {
+        $result = mysqli_query($con, $query);
+
+        return $query;
+    } else {
+        return $query;
+    }
+}
+
+function add_disease_communicable($diseaseID,$waysID){
+    require_once('dbconnect.php');
+
+    $query = "INSERT INTO disease_communicable (diseaseID,waysID) VALUES('$diseaseID','$waysID')";
+    $con = createconnection();
+
+    if (isset($query)) {
+        $result = mysqli_query($con, $query);
+
+        return $query;
+    } else {
+        return $query;
+    }
+}
 ?>
+

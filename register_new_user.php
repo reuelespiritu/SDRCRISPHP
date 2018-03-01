@@ -2,18 +2,16 @@
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
-<?php include_once ('controller/c_register_new_user.php');?>  
+    <?php include_once ('controller/c_register_new_user.php'); ?>  
     <head>
-             <?php include_once ('dependencies/top_resources.php');?>    
-        <?php 
-        
-        
-           if (isset($_POST['fn'])&&isset($_POST['mn'])&&isset($_POST['ln'])&&isset($_POST['em'])&&isset($_POST['p1'])&&isset($_POST['p2'])&&isset($_POST['spe'])){
-           
-               $view_result=submit_userform($_POST['fn'],$_POST['mn'],$_POST['ln'],$_POST['em'],$_POST['p1'],$_POST['p2'],$_POST['spe'],$_POST['mas'],$_POST['doc']);
-           
-                header("Location: manage_user.php");
-           }
+        <?php include_once ('dependencies/top_resources.php'); ?>    
+        <?php
+        if (isset($_POST['fn']) && isset($_POST['mn']) && isset($_POST['ln']) && isset($_POST['em']) && isset($_POST['p1']) && isset($_POST['p2']) && isset($_POST['spe'])) {
+
+            $view_result = submit_userform($_POST['fn'], $_POST['mn'], $_POST['ln'], $_POST['em'], $_POST['p1'], $_POST['p2'], $_POST['spe'], $_POST['mas'], $_POST['doc']);
+         
+
+         }
         ?>
     </head>
     <!-- END HEAD -->
@@ -23,7 +21,7 @@
             <div class="page-wrapper-row">
                 <div class="page-wrapper-top">
                     <!-- BEGIN HEADER -->
-      <?php include_once ('functions/header.php');?> 
+<?php include_once ('functions/header.php'); ?> 
                     <!-- END HEADER -->
                 </div>
             </div>
@@ -140,8 +138,8 @@
                                                                         <label for="exampleInputEmail1">Doctorate</label>
                                                                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Doctorate" name="doc">
                                                                         <small>Leave blank if not applicable.</small></div>
-                                                                    
-                                                                    <input type="submit" class="btn btn-info pull left" value="Register User" onClick="alert('The user has been registered to the system')">
+
+                                                                    <button type="submit" class="btn btn-info pull left" >Register User</button>
                                                                 </form>
                                                             </div>                                              
                                                         </div>							
@@ -181,7 +179,7 @@
         <div class="page-wrapper-bottom">
             <!-- BEGIN FOOTER -->
 
-      <?php include_once ('functions/footer.php');?>   
+<?php include_once ('functions/footer.php'); ?>   
             <!-- END FOOTER -->
         </div>
     </div>
@@ -191,7 +189,7 @@
 <script src="assets/global/plugins/excanvas.min.js"></script> 
 <script src="assets/global/plugins/ie8.fix.min.js"></script> 
 <![endif]-->
-      <?php include_once ('dependencies/bottom_resources.php');?>   
+<?php include_once ('dependencies/bottom_resources.php'); ?>   
 </body>
 
 </html>
