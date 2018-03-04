@@ -7,19 +7,23 @@
     <head>
         <?php
         include_once ('dependencies/top_resources.php');
-       if (isset($_FILES['fileupload']) ) {
+        if (isset($_FILES['fileupload'])) {
             $imgData = $_FILES['fileupload'];
-       
-            if ($_FILES['fileupload']['name'] == "HEALTH_DATA.csv"){$view_result = submit_healthdata_area($_SESSION['project'], $imgData, $_SESSION['userid']);
-            }
-else{                    echo "<script type='text/javascript'>alert('Please upload the standard file!');</script>";}
 
-            
+            if ($_FILES['fileupload']['name'] == "HEALTH_DATA.csv") {
+                $view_result = submit_healthdata($_SESSION['project'], $imgData, $_SESSION['userid']);
+
+                if(isset($view_result)||is_array($view_result)){
+                    $errorarray=$view_result;
+                    
+                }
+            } else {
+                echo "<script type='text/javascript'>alert('Please upload the standard file!');</script>";
             }
+        }
         ?>    
     </head>
     <!-- END HEAD -->
-
     <body class="page-container-bg-solid page-md">
         <div class="page-wrapper">
             <div class="page-wrapper-row">
@@ -41,7 +45,7 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                 <div class="container">
                                     <!-- BEGIN PAGE TITLE -->
                                     <div class="page-title">
-                                        <h1>Health Data Per Area</h1>
+                                        <h1>Health Data</h1>
                                     </div>
                                     <!-- END PAGE TITLE -->
                                     <!-- BEGIN PAGE TOOLBAR -->
@@ -62,7 +66,7 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                             <i class="fa fa-circle"></i>
                                         </li>
                                         <li>
-                                            <span>Health Data Per Area</span>
+                                            <span>Health Data</span>
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
@@ -75,7 +79,7 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">UPLOAD HEALTH DATA PER AREA</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPLOAD HEALTH DATA</span>
                                                             </div>
                                                         </div>
                                                         <div class="portlet-body">
@@ -84,6 +88,10 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail">Year</label>
                                                                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Year" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail">Month</label>
+                                                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Month" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="single" class="control-label">Region</label>
@@ -116,78 +124,144 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                                                         <div class="form-group">
                                                                             <label class="col-md-5 control-label">AW Diarrhea</label>
                                                                             <div class="col-md-7">
-                                                                                <input type="number" class="form-control" placeholder="AW Diarrhea" name="AWDiarrhea"> 
+                                                                                <input type="number" class="form-control" placeholder="AW Diarrhea" name="AWdiarrhea"> 
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label class="col-md-5 control-label">AB Diarrhea</label>
                                                                             <div class="col-md-7">
-                                                                                <input type="number" class="form-control" placeholder="AB Diarrhea" name="ABDiarrhea"> 
+                                                                                <input type="number" class="form-control" placeholder="AB Diarrhea" name="ABdiarrhea"> 
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label class="col-md-5 control-label">Hepatitis</label>
                                                                             <div class="col-md-7">
-                                                                                <input type="number" class="form-control" placeholder="Hepatitis" name="Hepatitis"> 
+                                                                                <input type="number" class="form-control" placeholder="Hepatitis" name="hepatitis"> 
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label class="col-md-5 control-label">Typhoid Fever</label>
                                                                             <div class="col-md-7">
-                                                                                <input type="number" class="form-control" placeholder="Typhoid Fever" name="TyphoidFever"> 
+                                                                                <input type="number" class="form-control" placeholder="Typhoid Paratyphoid Fever" name="typhoidparatyphoidFever"> 
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label class="col-md-5 control-label">Cholera</label>
                                                                             <div class="col-md-7">
-                                                                                <input type="number" class="form-control" placeholder="Cholera" name="Cholera"> 
+                                                                                <input type="number" class="form-control" placeholder="Cholera" name="cholera"> 
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label class="col-md-5 control-label">Malaria</label>
                                                                             <div class="col-md-7">
-                                                                                <input type="number" class="form-control" placeholder="Malaria" name="Malaria"> 
+                                                                                <input type="number" class="form-control" placeholder="Malaria" name="malaria"> 
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label class="col-md-5 control-label">Leptospirosis</label>
                                                                             <div class="col-md-7">
-                                                                                <input type="number" class="form-control" placeholder="Leptospirosis" name="Leptospirosis"> 
+                                                                                <input type="number" class="form-control" placeholder="Leptospirosis" name="leptospirosis"> 
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label class="col-md-5 control-label">Tetanus</label>
                                                                             <div class="col-md-7">
-                                                                                <input type="number" class="form-control" placeholder="Tetanus" name="Tetanus"> 
+                                                                                <input type="number" class="form-control" placeholder="Tetanus" name="tetanus"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-5 control-label">Pneumonia</label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" class="form-control" placeholder="Pneumonia" name="pneumonia"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-5 control-label">Bronchitis</label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" class="form-control" placeholder="Bronchitis" name="bronchitis"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-5 control-label">Influenza</label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" class="form-control" placeholder="Influenza" name="influenza"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-5 control-label">TB Respiratory</label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" class="form-control" placeholder="TB Respiratory" name="TBrespiratory"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-5 control-label">Chickenpox</label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" class="form-control" placeholder="Chickenpox" name="chickenpox"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-5 control-label">Dengue Fever</label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" class="form-control" placeholder="Dengue Fever" name="dengueFever"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-5 control-label">Dengue Fever</label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" class="form-control" placeholder="Dengue Fever" name="dengueFever"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-5 control-label">Measles</label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" class="form-control" placeholder="Measles" name="measles"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-5 control-label">Hypertension</label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" class="form-control" placeholder="Hypertension" name="hypertension"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-5 control-label">Diseases of the Heart</label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" class="form-control" placeholder="Diseases of the Heart" name="diseasesOfTheHeart"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-5 control-label">Respiratory Infection</label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" class="form-control" placeholder="Respiratory Infection" name="respiratoryInfection"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-5 control-label">Diabetes</label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" class="form-control" placeholder="Diabetes" name="diabetes"> 
                                                                             </div>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="pull-left" style="padding-top: 20px;">
-                                                                        <input type="submit" class="btn btn-info" value="Upload Health Data per Region">
+                                                                        <button type="submit" class="btn btn-info">Upload Health Data per Region</button>
                                                                     </div>
-                                                                    <ul class="list-separated list-inline-xs hide">
-
-                                                                    </ul>
                                                                 </form>
                                                             </div>							
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="col-md-6 col-sm-15">
                                                     <div class="portlet light ">
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">UPLOAD HEALTH DATA PER AREA CSV FILE</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPLOAD HEALTH DATA CSV FILE</span>
                                                             </div>
                                                         </div>
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
-
                                                                 <form class="col-md-10" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" name="frmImage" enctype="multipart/form-data" >
-
                                                                     <div class="form-group" style="padding-bottom:40px;">
                                                                         <div class="col-md-3">
                                                                             <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -206,11 +280,8 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                                                         </div>
                                                                     </div>
                                                                     <div class="pull-left" style="padding-left: 15px;">
-                                                                        <input type="submit" class="btn btn-info" value="Submit">
+                                                                        <button type="submit" class="btn btn-info">Submit</button>
                                                                     </div>
-                                                                    <ul class="list-separated list-inline-xs hide">
-
-                                                                    </ul>
                                                                 </form>
                                                             </div>              
                                                         </div>
@@ -225,6 +296,28 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                         </div>
                         <!-- END PAGE CONTENT BODY -->
                         <!-- END CONTENT BODY -->
+                             
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Health Data Uploaded" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="confirm">Default Alert</div>
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Error on Upload" data-message="
+                            <?php 
+                             
+                             if (isset($errorarray)){
+                                 
+                                     $x=0;
+                                     $rowreccurence=array_count_values($errorarray);
+                                     $keysofrowrecurrence= array_keys($rowreccurence);
+                              $message=array();
+                                 foreach ($rowreccurence as $arr){
+                                     $row=$keysofrowrecurrence[$x];
+                                     $rowcomputed=$row+1;
+                                       $msg="There is/are $rowreccurence[$row] errors on row $rowcomputed | ";
+                              echo $msg;
+                                     array_push($message, $msg);
+                                          $x++;
+                                 }
+                             }?>" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="error">Default Alert</div>
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Budget Catetgory Update" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="update">Default Alert</div>
+
                     </div>
                     <!-- END CONTENT -->
                     <!-- BEGIN QUICK SIDEBAR -->
@@ -250,9 +343,23 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
     <script src="assets/global/plugins/ie8.fix.min.js"></script> 
     <![endif]-->
     <?php include_once ('dependencies/bottom_resources.php'); ?>   
-    <script>$(document).ready(function () {
-            $('.js-example-basic-single').select2();
-        });</script>
+       <script>
+        <?php
+        if (isset($view_result) && $view_result == 1) {
+            echo'$(document).ready(function(){ 
+                       document.getElementById("confirm").click();
+        });';
+        } else if (isset($errorarray)) {
+            echo'$(document).ready(function(){ 
+                       document.getElementById("error").click();
+        });';
+        } else if (isset($view_result) && $view_result == 3) {
+            echo'$(document).ready(function(){ 
+                       document.getElementById("update").click();
+        });';
+        }
+        ?>
+        </script>
 </body>
 
 </html>

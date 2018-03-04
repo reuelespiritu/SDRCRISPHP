@@ -9,14 +9,12 @@
          <?php include_once ('dependencies/top_resources.php');?>   
     </head>
     <!-- END HEAD -->
-
     <body class="page-container-bg-solid page-md">
         <div class="page-wrapper">
             <div class="page-wrapper-row">
                 <div class="page-wrapper-top">
                     <!-- BEGIN HEADER -->
-                    
-      <?php include_once ('functions/header.php');?>   
+                     <?php include_once ('functions/header.php');?>   
                     <!-- END HEADER -->
                 </div>
             </div>
@@ -103,68 +101,113 @@
                                                 <!-- END WIDGET THUMB -->
                                             </div>
                                         </div>
+                                        <!-- BEGIN ROW -->
                                         <div class="row">
                                             <div class="col-lg-6 col-xs-12 col-sm-12">
+                                                <!-- BEGIN CHART PORTLET-->
                                                 <div class="portlet light ">
                                                     <div class="portlet-title">
                                                         <div class="caption">
-                                                            <span class="caption-subject bold uppercase font-green-steel">Health Data Per Region</span>
-                                                            <span class="caption-helper">Incidents</span>
+                                                            <span class="caption-subject bold uppercase font-green-haze">Health Data Statistics</span>
+                                                            <span class="caption-helper">Number of Incidents Per Area</span>
                                                         </div>
-                                                        <div class="actions">
-                                                            <a class="btn btn-circle btn-icon-only btn-default" href="#">
-                                                                <i class="icon-cloud-upload"></i>
-                                                            </a>
-                                                            <a class="btn btn-circle btn-icon-only btn-default" href="#">
-                                                                <i class="icon-wrench"></i>
-                                                            </a>
-                                                            <a class="btn btn-circle btn-icon-only btn-default" href="#">
-                                                                <i class="icon-trash"></i>
-                                                            </a>
-                                                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#"> </a>
+                                                        <div class="tools">
+                                                            <a href="javascript:;" class="collapse"> </a>
+                                                            <a href="javascript:;" class="fullscreen"> </a>
                                                         </div>
                                                     </div>
                                                     <div class="portlet-body">
-                                                        <div id="dashboard_amchart_2" class="mapChart"></div>
+                                                        <div id="chart_11" class="chart" style="height: 500px;"> </div>
                                                     </div>
                                                 </div>
+                                                <!-- END CHART PORTLET-->
                                             </div>
                                             <div class="col-lg-6 col-xs-12 col-sm-12">
+                                                <!-- BEGIN CHART PORTLET-->
                                                 <div class="portlet light ">
                                                     <div class="portlet-title">
-                                                        <div class="caption ">
-                                                            <span class="caption-subject bold uppercase font-green-steel">Health Data Per Region</span>
-                                                            <span class="caption-helper">Statistics</span>
+                                                        <div class="caption">
+                                                            <span class="caption-subject bold uppercase font-green-haze">Event Data Statistics</span>
+                                                            <span class="caption-helper">Number of Deaths Per Area</span>
                                                         </div>
-                                                        <div class="actions">
-                                                            <div class="btn-group">
-                                                                <a class="btn green-haze btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Actions
-                                                                    <i class="fa fa-angle-down"></i>
-                                                                </a>
-                                                                <ul class="dropdown-menu pull-right">
-                                                                    <li>
-                                                                        <a href="javascript:;"> Option 1</a>
-                                                                    </li>
-                                                                    <li class="divider"> </li>
-                                                                    <li>
-                                                                        <a href="javascript:;">Option 2</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascript:;">Option 3</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascript:;">Option 4</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                                                        <div class="tools">
+                                                            <a href="javascript:;" class="collapse"> </a>
+                                                            <a href="javascript:;" class="fullscreen"> </a>
                                                         </div>
                                                     </div>
                                                     <div class="portlet-body">
-                                                        <div id="dashboard_amchart_4" class="CSSAnimationChart"></div>
+                                                        <div id="chart_7" class="chart" style="height: 500px;"> </div>
                                                     </div>
                                                 </div>
+                                                <!-- END CHART PORTLET-->
                                             </div>
                                         </div>
+                                        <!-- END ROW -->
+                                        <!-- BEGIN ROW -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!-- BEGIN CHART PORTLET-->
+                                                <div class="portlet light ">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <span class="caption-subject bold uppercase font-green-haze">AFFECTED AREAS BASED FROM EXTREME EVENTS</span>
+                                                            <span class="caption-helper">world population</span>
+                                                        </div>
+                                                        <div class="tools">
+                                                            <a href="javascript:;" class="collapse"> </a>
+                                                            <a href="javascript:;" class="fullscreen"> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div id="chart_10" class="chart" style="height: 600px;"> </div>
+                                                    </div>
+                                                </div>
+                                                <!-- END CHART PORTLET-->
+                                            </div>
+                                        </div>
+                                        <!-- END ROW -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!-- BEGIN CHART PORTLET-->
+                                                <div class="portlet light bordered">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <span class="caption-subject bold uppercase font-green-haze">HEALTH RELATED INCIDENTS BASED FROM INFRASTRUCTURE DAMAGES DUE TO EXTREME EVENTS</span>
+                                                        </div>
+                                                        <div class="tools">
+                                                            <a href="javascript:;" class="collapse"> </a>
+                                                            <a href="javascript:;" class="fullscreen"> </a>
+                                                        </div>  
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div id="chart_1" class="chart" style="height: 500px;"> </div>
+                                                    </div>
+                                                </div>
+                                                <!-- END CHART PORTLET-->
+                                            </div>
+                                        </div>
+                                        <!-- BEGIN ROW -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!-- BEGIN CHART PORTLET-->
+                                                <div class="portlet light ">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <span class="caption-subject bold uppercase font-green-haze">ANNUAL REPORTED CALAMITIES PER AREA</span>
+                                                        </div>
+                                                        <div class="tools">
+                                                            <a href="javascript:;" class="collapse"> </a>
+                                                            <a href="javascript:;" class="fullscreen"> </a>
+                                                        </div>  
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div id="chart_3" class="chart" style="height: 400px;"> </div>
+                                                    </div>
+                                                </div>
+                                                <!-- END CHART PORTLET-->
+                                            </div>
+                                        </div>
+                                        <!-- END ROW -->
                                     </div>
                                     <!-- END PAGE CONTENT INNER -->
                                 </div>
@@ -177,7 +220,6 @@
                         <a href="javascript:;" class="page-quick-sidebar-toggler">
                             <i class="icon-login"></i>
                         </a>
-
                         <!-- END QUICK SIDEBAR -->
                     </div>
                     <!-- END CONTAINER -->
@@ -186,18 +228,17 @@
             <div class="page-wrapper-row">
                 <div class="page-wrapper-bottom">
                     <!-- BEGIN FOOTER -->
-
-      <?php include_once ('functions/footer.php');?>   
+                    <?php include_once ('functions/footer.php');?>   
                     <!-- END FOOTER -->
                 </div>
             </div>
         </div>
         <!--[if lt IE 9]>
-<script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
-<script src="assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
-      <?php include_once ('dependencies/bottom_resources.php');?>   
+        <script src="assets/global/plugins/respond.min.js"></script>
+        <script src="assets/global/plugins/excanvas.min.js"></script> 
+        <script src="assets/global/plugins/ie8.fix.min.js"></script> 
+        <![endif]-->  
+        <?php include_once ('dependencies/bottom_resources.php');?> 
     </body>
 
 </html>

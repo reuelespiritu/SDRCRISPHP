@@ -5,7 +5,27 @@
 <script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-<!-- END COREPLUGINS -->
+<!-- END CORE PLUGINS -->
+
+<!-- BEGIN DATA TABLES FOR VISUALIZATION -->
+<script src="assets/global/scripts/datatable.js" type="text/javascript"></script>
+<script src="assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script src="assets/pages/scripts/table-datatables-buttons.js" type="text/javascript"></script>
+<!-- END DATA TABLES FOR VISUALIZATION  -->
+
+<!-- BEGIN SCRIPT FOR DATA TABLES -->
+<script src="assets/layouts/jquery-datatable/jquery.dataTables.js"></script>
+<script src="assets/layouts/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+<script src="assets/layouts/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+<script src="assets/layouts/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+<script src="assets/layouts/jquery-datatable/extensions/export/jszip.min.js"></script>
+<script src="assets/layouts/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+<script src="assets/layouts/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+<script src="assets/layouts/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+<script src="assets/layouts/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+<!-- END SCRIPT FOR DATA TABLES -->
+
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="assets/global/plugins/moment.min.js" type="text/javascript"></script>
 <script src="assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
@@ -37,56 +57,53 @@
 <script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
 <script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
 <script src="assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
-<!-- END PAGELEVEL PLUGINS -->
-<!-- BEGIN THEME GLOBAL SCRIPTS -->
+<!-- END PAGE LEVEL PLUGINS -->
+
+<!-- BEGIN AM CHARTS THEME GLOBAL SCRIPTS -->
 <script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
-<!-- END THEME GLOBAL SCRIPTS -->
+<!-- END AM CHARTS THEME GLOBAL SCRIPTS -->
+
+<!-- BEGIN AM CHARTS -->
+<script src="assets/pages/scripts/charts-amcharts.js" type="text/javascript"></script>
+<!-- END AM CHARTS -->
 
 <!-- SELECT2 -->
 <script src="js/select2.js" type="text/javascript"></script>
+<!-- END SELECT2 -->
 
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL SCRIPTS -->
+<!-- TAG INPUTS -->
+<script src="assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/typeahead/handlebars.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/typeahead/typeahead.bundle.min.js" type="text/javascript"></script>
+<!-- END TAG INPUTS -->
+
+<!-- FILE INPUT -->
+<link href="assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+<script src="assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+<!-- END FILE INPUT -->
+
+<!-- BEGIN SWEET ALERTS -->
+<script src="assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+<script src="assets/pages/scripts/ui-sweetalert.min.js" type="text/javascript"></script>
+<!-- END SWEET ALERTS -->
+
+<!-- BEGIN BOOTBOX -->
+<script src="assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+<script src="assets/pages/scripts/ui-bootbox.js" type="text/javascript"></script>
+<!-- END BOOTBOX -->
+
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="assets/layouts/layout3/scripts/layout.min.js" type="text/javascript"></script>
 <script src="assets/layouts/layout3/scripts/demo.min.js" type="text/javascript"></script>
 <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <script src="assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
 <!-- END THEM LAYOUT SCRIPTS -->
-<script src="assets/layouts/jquery-datatable/jquery.dataTables.js"></script>
-
-<script src="assets/layouts/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-<script src="assets/layouts/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-<script src="assets/layouts/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-<script src="assets/layouts/jquery-datatable/extensions/export/jszip.min.js"></script>
-<script src="assets/layouts/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-<script src="assets/layouts/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-<script src="assets/layouts/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-<script src="assets/layouts/jquery-datatable/extensions/export/buttons.print.min.js"></script>
-
-<!-- TAG INPUTS -->
-<script src="assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/typeahead/handlebars.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/typeahead/typeahead.bundle.min.js" type="text/javascript"></script>
-
-<!-- FILE INPUT -->
-<link href="assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
-<script src="assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
-
-<!-- ALERTS -->
-
-<script src="assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
-<script src="assets/pages/scripts/ui-sweetalert.js" type="text/javascript"></script>
 
 
-<script src="assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+<!-- BEGIN AMCHARTS CSS-->
+<script src="assets/global/scripts/export.min.js"  type="text/javascript" ></script>
+<!-- END AMCHARTS CSS-->
 
-<script src="assets/pages/scripts/ui-bootbox.min.js" type="text/javascript"></script>        
-<script src="assets/pages/scripts/ui-bootbox.js" type="text/javascript"></script>
-
-<script src="js/dropzone.js"></script>
-<script src="js/pages/tables/jquery-datatable.js"></script>
 <script>
     $(document).ready(function ()
     {

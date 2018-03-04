@@ -53,8 +53,13 @@ function getallrrl_keyword($keyword){
 function uploadliterature($projectID, $year, $title, $author, $abstract, $typeID, $categoryID, $source, $link, $userID) {
     $datenow = date("Y-m-d H:i:s");
     require_once('dbconnect.php');
-
-    $query = "INSERT INTO rrl (projectID,year,title,author,abstract,typeID,categoryID,source,link,inputted_by,inputted_on) VALUES('$projectID','$year','$title','$author','$abstract','$typeID','$categoryID','$source','$link','$userID','$datenow')";
+    $abstract=addslashes($abstract);
+    $title=addslashes($title);
+    $author=addslashes($author);
+    $link=addslashes($link);
+    $source=addslashes($source);
+    
+    $query = "INSERT INTO rrl (projectID,year,title,author,abstract,typeID,categoryID,source,link,inputted_by,inputted_on) VALUES('$projectID','$year','$title','$author','\\$abstract','$typeID','$categoryID','$source','$link','$userID','$datenow')";
     $con = createconnection();
 
     if (isset($query)) {
@@ -80,37 +85,6 @@ function getlast() {
     $con->close();
 }
 
-function getkeyword($keyword) {
-    require_once('dbconnect.php');
-    $query = "SELECT keywordID FROM keyword WHERE keyword='$keyword'";
-    $con = createconnection();
-
-    if (isset($query)) {
-        $result = mysqli_query($con, $query);
-        return $result;
-    }
-    $con->close();
-}
-
-function rrl_to_keyword($keyword){
-    require_once('dbconnect.php');
-    
-    $rrlID = getlast();
-    $keywordID = getkeyword($keyword);
-
-    $query = "INSERT INTO rrl (rrlID,keywordID) VALUES('$rrlID', '$keywordID')";
-    $con = createconnection();
-
-    if (isset($query)) {
-        $result = mysqli_query($con, $query);
-
-        return $query;
-    } else {
-
-        return $query;
-    }
-    $con->close();
-}
 
 function deactivateliterature($idrrl) {
     require_once('dbconnect.php');

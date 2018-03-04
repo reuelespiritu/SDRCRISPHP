@@ -21,7 +21,6 @@
     </head>
 </head>
 <!-- END HEAD -->
-
 <body class="page-container-bg-solid page-md">
     <div class="page-wrapper">
         <div class="page-wrapper-row">
@@ -71,8 +70,6 @@
                                 <!----BODY--->
 
                                 <div class="page-content-inner">
-                                    <!----BODY--->
-
                                     <!-- BEGIN PAGE CONTENT INNER -->
                                     <div class="page-content-inner">
                                         <!----BODY--->
@@ -105,7 +102,6 @@
                                                                 $id = "";
                                                             }
                                                             ?>
-
                                                             <form class="col-md-10" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                                 <div class="form-group">
                                                                     <label for="exampleInputEmail1">Name</label>
@@ -116,20 +112,16 @@
                                                                     <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" name="description"  required><?php echo $description; ?></textarea>
                                                                 </div>
                                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-
                                                                 <input type="hidden" name="submittype" value="<?php
                                                                 if ($name == NULL) {
                                                                     echo "REGISTER";
                                                                 }
                                                                 ?>">
                                                                 <div class="pull-left">
-                                                                    <input type="submit" class="btn btn-info" value="Submit Funding Organization Type">
+                                                                    <button type="submit" class="btn btn-info">Submit Funding Organization Type</button>
                                                                 </div>                                              
                                                             </form>
                                                         </div>							
-                                                        <ul class="list-separated list-inline-xs hide">
-
-                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,13 +132,12 @@
                                                             <i class="icon-bar-chart font-dark hide"></i>
                                                             <span class="caption-subject font-green-steel uppercase bold">REGISTERED FUNDING ORGANIZATION TYPES</span>
                                                         </div>
-
                                                     </div>
                                                     <div class="portlet-body">
                                                         <div class="row list-separated">
                                                             <div class="table-responsive">
                                                                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                                                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                    <table class="table table-bordered table-striped table-hover" id="sample_2">
                                                                         <thead>
                                                                             <tr>
                                                                                 <th width="40%">Name</th>
@@ -160,7 +151,6 @@
                                                                             </tr>
                                                                         </tfoot>
                                                                         <tbody>
-
                                                                             <?php
                                                                             $query_result = generate_all_fundingorganizationtype();
                                                                             if ($query_result != FALSE) {
@@ -168,31 +158,23 @@
                                                                                     echo'   <tr>
                                                                                     <td>' . $arr_result['name'] . '</td>
                                                                                     <td>' . $arr_result['description'] . '</td>
-                                                                                    <td><button name="deactivate" value="' . $arr_result['fundingorganization_typeID'] . '" class="btn btn-danger btn-lg"/><span class="glyphicon glyphicon-trash"></span></td>
-                                                                                     <td><button name="update" value="' . $arr_result['fundingorganization_typeID'] . '" class="btn btn-warning btn-lg"/><span class="glyphicon glyphicon-wrench"></span></td>'
+                                                                                    <td><button name="deactivate" value="' . $arr_result['fundingorganization_typeID'] . '" class="btn btn-danger btn-lg"/><span class="fa fa-power-off"></span></td>
+                                                                                     <td><button name="update" value="' . $arr_result['fundingorganization_typeID'] . '" class="btn btn-warning btn-lg"/><span class="fa fa-pencil"></span></td>'
                                                                                     . '      </tr>';
                                                                                 }
                                                                             }
                                                                             ?>
-
                                                                         </tbody>
                                                                     </table>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <ul class="list-separated list-inline-xs hide">
-
-                                                    </ul>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
-
                             </div>
                             <!-- END PAGE CONTENT INNER -->
                         </div>
@@ -210,7 +192,6 @@
                 <a href="javascript:;" class="page-quick-sidebar-toggler">
                     <i class="icon-login"></i>
                 </a>
-
                 <!-- END QUICK SIDEBAR -->
             </div>
             <!-- END CONTAINER -->
@@ -219,34 +200,33 @@
     <div class="page-wrapper-row">
         <div class="page-wrapper-bottom">
             <!-- BEGIN FOOTER -->
-
             <?php include_once ('functions/footer.php'); ?>   
             <!-- END FOOTER -->
         </div>
     </div>
     <!--[if lt IE 9]>
-<script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
-<script src="assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
+    <script src="assets/global/plugins/respond.min.js"></script>
+    <script src="assets/global/plugins/excanvas.min.js"></script> 
+    <script src="assets/global/plugins/ie8.fix.min.js"></script> 
+    <![endif]-->
     <?php include_once ('dependencies/bottom_resources.php'); ?>   
      <script>
-
-<?php
-if (isset($view_result) && $view_result == 1) {
-    echo'$(document).ready(function(){ 
-               document.getElementById("confirm").click();
-});';
-} else if (isset($view_result) && $view_result == 2) {
-    echo'$(document).ready(function(){ 
-               document.getElementById("delete").click();
-});';
-} else if (isset($view_result) && $view_result == 3) {
-    echo'$(document).ready(function(){ 
-               document.getElementById("update").click();
-});';
-}
-?></script>
+    <?php
+    if (isset($view_result) && $view_result == 1) {
+        echo'$(document).ready(function(){ 
+                   document.getElementById("confirm").click();
+    });';
+    } else if (isset($view_result) && $view_result == 2) {
+        echo'$(document).ready(function(){ 
+                   document.getElementById("delete").click();
+    });';
+    } else if (isset($view_result) && $view_result == 3) {
+        echo'$(document).ready(function(){ 
+                   document.getElementById("update").click();
+    });';
+    }
+    ?>
+    </script>
 </body>
 
 </html>

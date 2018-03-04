@@ -35,6 +35,11 @@ var ChartsAmcharts = function() {
                 "income": 30.6,
                 "expenses": 27.2,
                 "dashLengthLine": 5
+                 }, {
+                "year": 2013,
+                "income": 30.6,
+                "expenses": 27.2,
+                "dashLengthLine": 5
             }, {
                 "year": 2014,
                 "income": 34.1,
@@ -2730,7 +2735,7 @@ var ChartsAmcharts = function() {
             map.fontSize = '13';
             map.color = '#888';
             
-            map.addTitle("Population of the World in 2011", 14);
+            map.addTitle("Affected Areas Based From Extreme Events", 14);
             map.addTitle("source: Gapminder", 11);
             map.areasSettings = {
                 unlistedAreasColor: "#000000",

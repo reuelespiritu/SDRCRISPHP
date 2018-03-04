@@ -9,6 +9,12 @@
 
 require_once ('model/m_rrl.php');
 require_once ('model/m_project_user.php');
+require_once ('model/m_keyword.php');
+require_once ('model/m_rrl_keyword.php');
+require_once ('model/m_category_literature.php');
+require_once ('model/m_type_of_literature.php');
+require_once ('model/m_project_user.php');
+require_once ('model/m_project_user.php');
 
 function generate_all_rrl() {
     $result = array();
@@ -17,123 +23,203 @@ function generate_all_rrl() {
 }
 
 function submit_literatureupload($projectid, $data, $userid) {
-    if ($data['type'] == "application/vnd.ms-excel") {
-        $fh = fopen($data['tmp_name'], 'r+');
-        $lines = array();
-        while (($row = fgetcsv($fh, 8192)) !== FALSE) {
-            $lines[] = $row;
-        }
-        $x = 0;
-        $checker = array();
-        $arr_content = array();
-        foreach ($lines as $arr_result) {
+    $fh = fopen($data['tmp_name'], 'r+');
+    $lines = array();
+
+
+    while (($row = fgetcsv($fh, 8192)) !== FALSE) {
+        $lines[] = $row;
+    }
+    $x = 0;
+    $checker = array();
+    $arr_content = array();
+    $keywordsarray = array();
+
+
+
+
+    foreach ($lines as $arr_result) {
+
+        if ($x > 0) {
+            $y = 0;
+
             $year = $arr_result[0];
             if ($year == NULL || $year < 0) {
                 array_push($checker, $x);
             }
+
             $title = $arr_result[1];
             if ($title == NULL || !is_string($title)) {
                 array_push($checker, $x);
             }
+
             $author = $arr_result[2];
             if ($author == NULL || !is_string($author)) {
                 array_push($checker, $x);
             }
+
+
             $abstract = $arr_result[3];
             if ($abstract == NULL || !is_string($abstract)) {
 
                 array_push($checker, $x);
             }
-            $typeID = $arr_result[4];
-            if ($typeID == "Grey") {
-                $typeID = 1;
-            } else if ($typeID == "Scientific") {
-                $typeID = 2;
-            } else {
-                $typeID = 0;
-            }
-            $categoryID = $arr_result[5];
-            if ($categoryID == "News Article") {
-                $categoryID = 1;
-            } else if ($categoryID == "Conference Papers") {
-                $categoryID = 2;
-            } else {
-                $categoryID = 0;
-            }
+
+//Type ID
+            $type = $arr_result[4];
+            $typeID = comparetypeoflit($type);
+
             if ($typeID <= 0) {
 
                 array_push($checker, $x);
             }
+
+
+//Category ID 
+            $category = $arr_result[5];
+            $categoryID = comparecategory($category);
+
             if ($categoryID <= 0) {
 
                 array_push($checker, $x);
             }
+
 
             $source = $arr_result[6];
             if ($source == NULL || !is_string($source)) {
 
                 array_push($checker, $x);
             }
-            $keywords = $arr_result[7];
-            if ($keywords == NULL || !is_string($keywords)) {
 
-                array_push($checker, $x);
+
+            $keywords = $arr_result[7];
+            $kwarray = (explode(',', $keywords));
+
+
+            $temparray = array();
+
+            foreach ($kwarray as $kw) {
+
+                array_push($temparray, $kw[$y]);
+                $y++;
             }
+            array_push($keywordsarray, $temparray);
+
             $link = $arr_result[8];
             if ($link == NULL || !is_string($link)) {
 
                 array_push($checker, $x);
             }
+
             $projectID = $projectid;
             $userID = $userid;
 
-            $x++;
-//
-//                    $newdata =  array (
-//      'year' => 'test',
-//      'title' => 'test',
-//      'author' => 'test'
-//      'author' => 'test'
-//      'author' => 'test'
-//    );
-//            array_push($arr_content, );
-//            
-//        }
-//        if ($checker != NULL) {
-//            return $arr_content;
-//        }
- uploadliterature($projectID, $year, $title, $author, $abstract, $typeID, $categoryID, $source, $keywords, $link, $userID);
-           
-    }
-    
-            } else {
-            echo "<script type='text/javascript'>alert('Please Upload a .csv file!');></script>";
+
+
+
+            $newdata = array(
+                'year' => $year,
+                'title' => $title,
+                'author' => $author,
+                'abstract' => $abstract,
+                'typeoflit' => $typeID,
+                'category' => $categoryID,
+                'source' => $source,
+                'inputtedby' => $userID,
+                'project' => $projectID,
+                'link' => $link
+            );
+            array_push($arr_content, $newdata);
         }
-         header('Location: visualization_listings_literature.php');
+        $x++;
     }
 
-function submit_form_literatureupload($projectID, $year, $title, $author, $abstract, $typeID, $categoryID, $source, $keywords, $link, $userID) {
 
 
-    $typeID = trim($typeID);
-    $categoryID = trim($categoryID);
-    if (strcmp($typeID, "Grey") == 0) {
-        $typeID = 1;
-    } else if (strcmp($typeID, "Scientific") == 0) {
-        $typeID = 2;
+
+    if ($checker==NULL) {
+        foreach ($arr_content as $line) {
+
+            $projectID = $line['project'];
+            $year = $line['year'];
+            $title = $line['title'];
+            $author = $line['author'];
+            $abstract = $line['abstract'];
+            $typeID = $line['typeoflit'];
+            $categoryID = $line['category'];
+            $source = $line['source'];
+            $link = $line['link'];
+            $userID = $line['inputtedby'];
+
+
+
+            uploadliterature($projectID, $year, $title, $author, $abstract, $typeID, $categoryID, $source, $link, $userID);
+
+        }
+        return 1;
+    } else {
+        
+        return $checker;
+        
     }
-    if (strcmp($categoryID, "News Articles") == 0) {
-        $categoryID = 1;
-    } else if (strcmp($categoryID, "Conference Papers") == 0) {
-        $categoryID = 2;
-    }
-
-    $controller_result = uploadliterature($projectID, $year, $title, $author, $abstract, $typeID, $categoryID, $source, $keywords, $link, $userID);
-    echo "<script type='text/javascript'>alert('Review of Related Literature material details successfully uploaded!');</script>";
-
-    header('Location: visualization_listings_literature.php');
 }
 
-function deactivat_errl($rrlID) {
-    $controller_result = deactivaterrl($rrlID);
+function submit_form_literatureupload($projectID, $year, $title, $author, $abstract, $type, $category, $source, $keywords, $link, $userID) {
+
+
+
+
+    $categoryID = comparecategory($category);
+
+    $typeID = comparetypeoflit($type);
+
+    $controller_result = uploadliterature($projectID, $year, $title, $author, $abstract, $typeID, $categoryID, $source, $keywords, $link, $userID);
+
+    return 1;
+}
+
+function comparekeyword($keyword) {
+
+    $result = getkeywordidfromtext($keyword);
+
+    if ($result != FALSE) {
+        foreach ($result as $arr_result) {
+            $keyID = $arr_result['keywordID'];
+        }
+        return $keyID;
+    } else {
+        return $keyword;
+    }
+}
+
+function comparecategory($category) {
+
+    $result = getcategoryoflitfromtext($category);
+
+    if ($result != FALSE) {
+        foreach ($result as $arr_result) {
+            $categoryID = $arr_result['categoryID'];
+        }
+        return $categoryID;
+    } else {
+        return 0;
+    }
+}
+
+function comparetypeoflit($type) {
+
+    $result = gettypeoflitfromtext($type);
+
+    if ($result != FALSE) {
+        foreach ($result as $arr_result) {
+            $typeID = $arr_result['typeOfLitID'];
+        }
+        return $typeID;
+    } else {
+        return 0;
+    }
+}
+
+function submitkeyword($keyword) {
+    setkeyword($keyword);
 }

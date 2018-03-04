@@ -7,19 +7,23 @@
     <head>
         <?php
         include_once ('dependencies/top_resources.php');
-      if (isset($_FILES['fileupload']) ) {
+        if (isset($_FILES['fileupload'])) {
             $imgData = $_FILES['fileupload'];
-       
-            if ($_FILES['fileupload']['name'] == "EVENT_DATA.csv"){$view_result = submit_eventdata_area($_SESSION['project'], $imgData, $_SESSION['userid']);
-            }
-else{                    echo "<script type='text/javascript'>alert('Please upload the standard file!');</script>";}
 
-            
+            if ($_FILES['fileupload']['name'] == "EVENT_DATA.csv") {
+                $view_result = submit_eventdata_area($_SESSION['project'], $imgData, $_SESSION['userid']);
+              
+                   if(isset($view_result)||is_array($view_result)){
+                    $errorarray=$view_result;
+                    
+                }
+            } else {
+                echo "<script type='text/javascript'>alert('Please upload the standard file!');</script>";
             }
+        }
         ?>
     </head>
     <!-- END HEAD -->
-
     <body class="page-container-bg-solid page-md">
         <div class="page-wrapper">
             <div class="page-wrapper-row">
@@ -41,7 +45,7 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                 <div class="container">
                                     <!-- BEGIN PAGE TITLE -->
                                     <div class="page-title">
-                                        <h1>Event Data Per Area</h1>
+                                        <h1>Event Data</h1>
                                     </div>
                                     <!-- END PAGE TITLE -->
                                     <!-- BEGIN PAGE TOOLBAR -->
@@ -62,7 +66,7 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                             <i class="fa fa-circle"></i>
                                         </li>
                                         <li>
-                                            <span>Event Data Per Area</span>
+                                            <span>Event Data</span>
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
@@ -75,7 +79,7 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">UPLOAD EVENT DATA PER AREA</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPLOAD EVENT DATA</span>
                                                             </div>
                                                         </div>
                                                         <div class="portlet-body">
@@ -144,30 +148,25 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                                                             </optgroup>
                                                                         </select>
                                                                     </div>
-                                                                  
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail">No. of Deaths</label>
                                                                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="numofdeaths" placeholder="No. of Deaths" required>
                                                                     </div>
 
                                                                     <div class="pull-left">
-                                                                        <input type="submit" class="btn btn-info" value="Upload Event Data per Region">
+                                                                        <button type="submit" class="btn btn-info">Upload Event Data</button>
                                                                     </div>
-                                                                    <ul class="list-separated list-inline-xs hide">
-
-                                                                    </ul>
                                                                 </form>
                                                             </div>							
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="col-md-6 col-sm-15">
                                                     <div class="portlet light ">
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-                                                                <span class="caption-subject font-green-steel uppercase bold">UPLOAD EVENT DATA PER REGION CSV FILE</span>
+                                                                <span class="caption-subject font-green-steel uppercase bold">UPLOAD EVENT DATA CSV FILE</span>
                                                             </div>
                                                         </div>
                                                         <div class="portlet-body">
@@ -191,11 +190,8 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                                                                         </div>
                                                                     </div>
                                                                     <div class="pull-left" style="padding-left: 15px;">
-                                                                        <input type="submit" class="btn btn-info" value="Submit">
+                                                                        <button type="submit" class="btn btn-info">Submit</button>
                                                                     </div>
-                                                                    <ul class="list-separated list-inline-xs hide">
-
-                                                                    </ul>
                                                                 </form>
                                                             </div>              
                                                         </div>
@@ -210,6 +206,27 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
                         </div>
                         <!-- END PAGE CONTENT BODY -->
                         <!-- END CONTENT BODY -->
+                         <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Health Data Uploaded" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="confirm">Default Alert</div>
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Error on Upload" data-message="
+                            <?php 
+                             
+                             if (isset($errorarray)){
+                                 
+                                     $x=0;
+                                     $rowreccurence=array_count_values($errorarray);
+                                     $keysofrowrecurrence= array_keys($rowreccurence);
+                              $message=array();
+                                 foreach ($rowreccurence as $arr){
+                                     $row=$keysofrowrecurrence[$x];
+                                     $rowcomputed=$row+1;
+                                       $msg="There is/are $rowreccurence[$row] errors on row $rowcomputed | ";
+                              echo $msg;
+                                     array_push($message, $msg);
+                                          $x++;
+                                 }
+                             }?>" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="error">Default Alert</div>
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Budget Catetgory Update" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="update">Default Alert</div>
+
                     </div>
                     <!-- END CONTENT -->
                     <!-- BEGIN QUICK SIDEBAR -->
@@ -235,9 +252,23 @@ else{                    echo "<script type='text/javascript'>alert('Please uplo
     <script src="assets/global/plugins/ie8.fix.min.js"></script> 
     <![endif]-->
     <?php include_once ('dependencies/bottom_resources.php'); ?>   
-    <script>$(document).ready(function () {
-            $('.js-example-basic-single').select2();
-        });</script>
+     <script>
+        <?php
+        if (isset($view_result) && $view_result == 1) {
+            echo'$(document).ready(function(){ 
+                       document.getElementById("confirm").click();
+        });';
+        } else if (isset($errorarray)) {
+            echo'$(document).ready(function(){ 
+                       document.getElementById("error").click();
+        });';
+        } else if (isset($view_result) && $view_result == 3) {
+            echo'$(document).ready(function(){ 
+                       document.getElementById("update").click();
+        });';
+        }
+        ?>
+        </script>
 </body>
 
 </html>

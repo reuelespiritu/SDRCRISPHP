@@ -3,7 +3,7 @@
 function getallhealth_data() {
     require_once('dbconnect.php');
 
-    $query = "SELECT hd.*, (SELECT d.disease FROM diseases d WHERE d.diseaseID=hd.diseaseID) AS 'disease', (SELECT GROUP_CONCAT(way SEPARATOR ',') FROM ways_spreading ws WHERE ws.ways_spreadingID IN (SELECT dc.waysID FROM disease_communicable dc WHERE dc.diseaseID=hd.diseaseID)) AS 'communicable by' FROM health_data hd WHERE active = 1";
+    $query = "SELECT hd.*, (SELECT d.disease FROM diseases d WHERE d.diseaseID=hd.diseaseID) AS 'disease', (SELECT GROUP_CONCAT(way SEPARATOR ',') FROM ways_spreading ws WHERE ws.ways_spreadingID IN (SELECT dc.waysID FROM disease_communicable dc WHERE dc.diseaseID=hd.diseaseID)) AS 'communicable by', (SELECT CONCAT(u.firstname, u.lastname) FROM user u WHERE u.userID=hd.uploadedBy) AS 'uploadedBy' FROM health_data hd WHERE active = 1";
     $con = createconnection();
 
     if (isset($query)) {
@@ -75,25 +75,11 @@ function getallhealth_data_noncommunicable() {
     $con->close();
 }
 
-function getdisease($d) {
-    require_once('dbconnect.php');
-    $query = "SELECT diseaseID FROM diseases WHERE disease='$d'";
-    $con = createconnection();
-
-    if (isset($query)) {
-        $result = mysqli_query($con, $query);
-        return $result;
-    }
-    $con->close();
-}
-
 function upload_health_data($projectID, $year, $month, $region, $city, $disease, $infected, $uploadedBy) {
     $datenow = date("Y-m-d H:i:s");
     require_once('dbconnect.php');
     
-    $diseaseID = getdisease($disease);
-
-    $query = "INSERT INTO health_data (projectID,year,month,region,city,diseaseID,infected,uploadedBy) VALUES('$projectID','$year','$month','$region','$city','$diseaseID','$infected','$uploadedBy','$datenow')";
+    $query = "INSERT INTO health_data (projectID,year,month,region,city,diseaseID,infected,uploadedBy,uploadDate) VALUES('$projectID','$year','$month','$region','$city','$disease','$infected','$uploadedBy','$datenow')";
     $con = createconnection();
 
     if (isset($query)) {
@@ -105,5 +91,6 @@ function upload_health_data($projectID, $year, $month, $region, $city, $disease,
         return $query;
     }
 }
+
 
 ?>

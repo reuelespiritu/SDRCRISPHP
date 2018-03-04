@@ -2,7 +2,7 @@
 function getalleventdata(){
      require_once('dbconnect.php');
 
-    $query = "SELECT ed.*,CONCAT(u.firstname, u.lastname) FROM event_data ed JOIN user u ON ed.uploadedBy=u.userID WHERE ed.active = 1";
+    $query = "SELECT ed.*,CONCAT(u.firstname, u.lastname) AS 'uploadedBy' FROM event_data ed JOIN user u ON ed.uploadedBy=u.userID WHERE ed.active = 1";
     $con = createconnection();
 
     if (isset($query)) {

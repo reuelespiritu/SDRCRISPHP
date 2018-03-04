@@ -63,8 +63,6 @@
                                     <!-- END PAGE BREADCRUMBS -->
                                     <!----BODY--->
                                     <div class="page-content-inner">
-                                        <!----BODY--->
-
                                         <!-- BEGIN PAGE CONTENT INNER -->
                                         <div class="page-content-inner">
                                             <!----BODY--->
@@ -103,7 +101,6 @@
                                                                             ?>
                                                                         </select>
                                                                     </div>
-
                                                                     <div class="form-group">
                                                                         <label for="single" class="control-label">Expense Category</label>
                                                                         <select id="single" class="form-control select2" name="expensecategory" >
@@ -112,27 +109,24 @@
                                                                             if ($query_result != FALSE) {
                                                                                 foreach ($query_result as $arr_result) {
                                                                                     echo'   <tr>
-                                                                                                                 <option value="' . $arr_result['expensecategoryID'] . '">' . $arr_result['name'] . '</option>
+                                                                                                <option value="' . $arr_result['expensecategoryID'] . '">' . $arr_result['name'] . '</option>
 
 
-                                                                                                   . </tr>';
+                                                                                            . </tr>';
                                                                                 }
                                                                             }
                                                                             ?>
                                                                         </select>
                                                                     </div>
                                                                     <div class="pull-left">
-                                                                        <input type="submit" class="btn btn-info" value="Submit Expense">
+                                                                        <button type="submit" class="btn btn-info">Submit Expense</button>
                                                                     </div>                                              
                                                                 </form>
                                                             </div>							
-                                                            <ul class="list-separated list-inline-xs hide">
-
-                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 col-sm-6">
+                                                <div class="col-md-6 col-sm-12">
                                                     <div class="portlet light ">
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
@@ -143,10 +137,10 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
-                                                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                    <table class="table table-bordered table-striped table-hover" id="sample_2">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th width="10%">Inputted On</th>
+                                                                                <th width="10%">Date Uploaded</th>
                                                                                 <th width="10%">Category</th>
                                                                                 <th width="10%">Method</th>
                                                                                 <th width="50%">Remarks</th>
@@ -175,13 +169,8 @@
                                                                     </table>
                                                                 </div>
                                                             </div>
-                                                                                                                            <br>
-                                                                                                                            <B>Total Budget Amount: <?php $amt= generatetotalexpense(); echo $amt; ?></B>
-                                                              
+                                                                <B>Total Budget Amount: <?php $amt= generatetotalexpense(); echo $amt; ?></B>
                                                         </div>
-                                                        <ul class="list-separated list-inline-xs hide">
-
-                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
@@ -210,7 +199,7 @@
         <div class="page-wrapper-row">
             <div class="page-wrapper-bottom">
                 <!-- BEGIN FOOTER -->
-<?php include_once ('functions/footer.php'); ?>   
+                <?php include_once ('functions/footer.php'); ?>   
                 <!-- END FOOTER -->
             </div>
         </div>
@@ -220,17 +209,17 @@
     <script src="assets/global/plugins/excanvas.min.js"></script> 
     <script src="assets/global/plugins/ie8.fix.min.js"></script> 
     <![endif]-->
-<?php include_once ('dependencies/bottom_resources.php'); ?>   
-     <script>
-        
-<?php
-if(isset($view_result)&&$view_result==TRUE)
-echo'$(document).ready(function(){ 
-                document.getElementById("confirm").click();
-            });';
+    <?php include_once ('dependencies/bottom_resources.php'); ?>   
+    <script>  
+    <?php
+    if(isset($view_result)&&$view_result==TRUE)
+    echo'$(document).ready(function(){ 
+                    document.getElementById("confirm").click();
+                });';
 
 
-?></script>
+    ?>
+    </script>
 </body>
 
 </html>

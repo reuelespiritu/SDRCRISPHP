@@ -123,7 +123,7 @@
                                                                           </select>
                                                                                         </div>
                                                                         
-                                                                        <input type="submit" class="btn btn-info" value="REGISTER NEW PROJECT" onClick="alert('The project has been registered to he system')">
+                                                                        <input type="submit" class="btn btn-info" value="REGISTER NEW PROJECT" onClick="alert('The project has been registered to the system')">
                                                                         <div class="pull-left">
                                                                         </div>                                              
                                                                     </div>

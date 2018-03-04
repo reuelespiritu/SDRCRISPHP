@@ -84,7 +84,7 @@
                                                         <div class="row list-separated">
                                                             <div class="table-responsive">
                                                                 <form method="post" action="<?php ($_SERVER["PHP_SELF"]) ?>">
-                                                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                    <table class="table table-bordered table-striped table-hover" id="sample_2">
                                                                         <thead>
                                                                             <tr>
                                                                                 <th width="10%">First Name</th>
@@ -111,31 +111,30 @@
                                                                             if ($query_result != FALSE) {
                                                                                 foreach ($query_result as $user) {
                                                                                     echo' 
-                                          <tr>
-                                          <td>' . $user['firstname'] . '</td>
-                                          <td>' . $user['middlename'] . '</td>
-                                          <td>' . $user['lastname'] . '</td>
-                                           <td>' . $user['email'] . '</td>
-                                           <td>' . $user['specializations'] . '</td>
-                                           <td>' . $user['masters'] . '</td>
-                                               <td>' . $user['doctorate'] . '</td>
-                                                   <td>' . $user['registrationdate'] . '</td>
-                                                                                <td>  
-                                                                                    <button name="deactivate" type="submit" class="btn btn-danger btn-lg" value="' . $user['userID'] . ' " onClick="alert(\'User: ' . $user['firstname'] . '  ' . $user['lastname'] . ' account has been successfully deactivated!\')"  />
-                                                                                    <span class="glyphicon glyphicon-trash"></span>
-                                                                                </td>  
-                                                                                <td>  
-                                                                                    <button name="update" type="submit" class="btn btn-warning btn-lg" value="' . $user['userID'] . '" />
-                                                                                    <span class="glyphicon glyphicon-wrench"></span>
-                                                                                </td>';
-                                                                                }
+                                                                                    <tr>
+                                                                                    <td>' . $user['firstname'] . '</td>
+                                                                                    <td>' . $user['middlename'] . '</td>
+                                                                                    <td>' . $user['lastname'] . '</td>
+                                                                                    <td>' . $user['email'] . '</td>
+                                                                                    <td>' . $user['specializations'] . '</td>
+                                                                                    <td>' . $user['masters'] . '</td>
+                                                                                    <td>' . $user['doctorate'] . '</td>
+                                                                                    <td>' . $user['registrationdate'] . '</td>
+                                                                                    <td> 
+                                                                                        <button name="deactivate" type="submit" class="btn btn-danger btn-lg" value="' . $user['userID'] . ' " onClick="alert(\'User: ' . $user['firstname'] . '  ' . $user['lastname'] . ' account has been successfully deactivated!\')"  />
+                                                                                        <span class="fa fa-power-off"></span>
+                                                                                    </td>  
+                                                                                    <td>  
+                                                                                        <button name="update" type="submit" class="btn btn-warning btn-lg" value="' . $user['userID'] . '" />
+                                                                                        <span class="fa fa-pencil"></span>
+                                                                                    </td>';
+                                                                                    }
                                                                             } else {
                                                                                 echo "<div align=\"center\" style=\"color:red\"><b>NO PROJECTS TO DISPLAY</b></div>";
                                                                             }
                                                                             ?>
 
                                                                             </tr>
-
                                                                         </tbody>
                                                                     </table>
                                                                 </form>
@@ -144,23 +143,17 @@
                                                         </div>
                                                         <a href="register_new_user.php" class="btn btn-info" role="button">REGISTER NEW USER</a>
                                                     </div>
-                                                    <ul class="list-separated list-inline-xs hide">
-
-                                                    </ul>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <!-- END PAGE CONTENT INNER -->
                                 </div>
                             </div>
                             <!-- END PAGE CONTENT BODY -->
                             <!-- END CONTENT BODY -->
                                  
-                                                <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="User Registered" data-message="The user information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="confirm">Default Alert</div>
+                            <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="User Registered" data-message="The user information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="confirm">Default Alert</div>
  
                         </div>
                         <!-- END CONTENT -->
@@ -168,7 +161,6 @@
                         <a href="javascript:;" class="page-quick-sidebar-toggler">
                             <i class="icon-login"></i>
                         </a>
-
                         <!-- END QUICK SIDEBAR -->
                     </div>
                     <!-- END CONTAINER -->
@@ -184,10 +176,10 @@
             </div>
         </div>
         <!--[if lt IE 9]>
-<script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
-<script src="assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
+        <script src="assets/global/plugins/respond.min.js"></script>
+        <script src="assets/global/plugins/excanvas.min.js"></script> 
+        <script src="assets/global/plugins/ie8.fix.min.js"></script> 
+        <![endif]-->
         <?php include_once ('dependencies/bottom_resources.php'); ?>   
         <script>
 

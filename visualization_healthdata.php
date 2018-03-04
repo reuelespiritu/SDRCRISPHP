@@ -11,7 +11,6 @@
         <title>SDRC-RIS: Health Data Per Area</title>
     </head>
     <!-- END HEAD -->
-
     <body class="page-container-bg-solid page-md">
         <div class="page-wrapper">
             <div class="page-wrapper-row">
@@ -76,17 +75,11 @@
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Year</th>
-                                                                        <th>Province</th>
+                                                                        <th>Month</th>
+                                                                        <th>Region</th>
                                                                         <th>City</th>
-                                                                        <th>AW Diarrhea</th>
-                                                                        <th>AB Diarrhea</th>
-                                                                        <th>Hepatitis</th>
-                                                                        <th>Typhoid Fever</th>
-                                                                        <th>Cholera</th>
-                                                                        <th>Dengue</th>
-                                                                        <th>Malaria</th>
-                                                                        <th>Leptospirosis</th>
-                                                                        <th>Tetanus</th>
+                                                                        <th>Disease</th>
+                                                                        <th>Infected</th>
                                                                         <th>Uploaded By</th>
                                                                         <th>Upload Date</th>
                                                                     </tr>
@@ -99,16 +92,11 @@
                                                                        foreach ($query_result as $arr_result){
                                                                         echo'   <tr>
                                                                                 <td>'.$arr_result['year'].'</td>
+                                                                                <td>'.$arr_result['month'].'</td>
                                                                                 <td>'.$arr_result['region'].'</td>
                                                                                 <td>'.$arr_result['city'].'</td>
-                                                                                <td>'.$arr_result['AWdiarrhea'].'</td>
-                                                                                <td>'.$arr_result['ABdiarrhea'].'</td>
-                                                                                <td>'.$arr_result['hepatitis'].'</td>
-                                                                                <td>'.$arr_result['cholera'].'</td>
-                                                                                <td>'.$arr_result['dengue'].'</td>
-                                                                                <td>'.$arr_result['malaria'].'</td>
-                                                                                <td>'.$arr_result['leptospirosis'].'</td>
-                                                                                <td>'.$arr_result['tetanus'].'</td>
+                                                                                <td>'.$arr_result['disease'].'</td>
+                                                                                <td>'.$arr_result['infected'].'</td>
                                                                                 <td>'.$arr_result['uploadedBy'].'</td>
                                                                                 <td>'.$arr_result['uploadDate'].'</td>
                                                                                 </tr>';

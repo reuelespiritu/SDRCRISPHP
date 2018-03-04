@@ -74,12 +74,12 @@
                                                             <table class="table table-striped table-bordered table-hover" id="sample_2">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Infrastructure Damage</th>
                                                                         <th>Infrastructure Damage Type</th>
                                                                         <th>Hospital</th>
+                                                                        <th>City</th>
+                                                                        <th>Year</th>
                                                                         <th>Hospital Level</th>
                                                                         <th>Water System Damage</th>
-                                                                        <th>Water System Damage Type</th>
                                                                         <th>Uploaded By </th>
                                                                         <th>Upload Date</th>
                                                                     </tr>
@@ -91,12 +91,12 @@
                                                                     if ($query_result != FALSE) {
                                                                         foreach ($query_result as $arr_result) {
                                                                             echo'   <tr>
-                                                                                    <td>' . $arr_result['infrastructureDamage'] . '</td>
                                                                                     <td>' . $arr_result['infrastructureDamageType'] . '</td>
                                                                                     <td>' . $arr_result['hospital'] . '</td>
+                                                                                    <td>' . $arr_result['city'] . '</td>
+                                                                                    <td>' . $arr_result['year'] . '</td>
                                                                                     <td>' . $arr_result['hospitalLevel'] . '</td>
-                                                                                    <td>' . $arr_result['waterSystemDamage'] . '</td>
-                                                                                    <td>' . $arr_result['waterSystemDamageID'] . '</td>
+                                                                                            <td>' . $arr_result['waterSystemDamageID'] . '</td>
                                                                                     <td>' . $arr_result['uploadedBy'] . '</td>
                                                                                     <td>' . $arr_result['uploadDate'] . '</td>
                                                                                     </tr>';

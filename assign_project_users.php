@@ -4,7 +4,6 @@
 
     <?php include_once ('controller/c_assign_project_users.php'); ?>  
     <head>
-
         <?php
         include_once ('dependencies/top_resources.php');
         if (isset($_POST['uid'])) {
@@ -13,10 +12,8 @@
             $view_result = delete_project_user(($_POST['deactivate']));
         }
         ?>
-
     </head>
     <!-- END HEAD -->
-
     <body class="page-container-bg-solid page-md">
         <div class="page-wrapper">
             <div class="page-wrapper-row">
@@ -64,19 +61,14 @@
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
                                     <!----BODY--->
-
-
                                     <div class="page-content-inner">
-                                        <!----BODY--->
                                         <div class="row">
                                             <div class="col-md-14">
                                                 <div class="portlet light">
                                                     <div class="portlet-title">
                                                         <div class="caption caption-md">
                                                             <i class="icon-bar-chart font-dark hide"></i>
-
                                                             <span class="caption-subject font-green-steel uppercase bold">
-
 
                                                             </span> <!---Get Project Name--->
                                                         </div>
@@ -85,8 +77,7 @@
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
-
-                                                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                    <table class="table table-bordered table-striped table-hover" id="sample_2">
                                                                         <thead>
                                                                             <tr>
                                                                                 <th width="10%">First Name</th>
@@ -104,7 +95,6 @@
                                                                             </tr>
                                                                         </tfoot>
                                                                         <tbody>
-
                                                                             <?php
                                                                             $query_result = generate_all_projectusers();
                                                                             if ($query_result != FALSE) {
@@ -122,26 +112,17 @@
                                                                                 }
                                                                             }
                                                                             ?>
-
                                                                         </tbody>
                                                                     </table>
-
                                                                 </div>
-                                                                <br>
                                                             </div>
-
-                                                            <input type="submit" class="btn btn-info" value="Submit">            </div>
+                                                            <button type="submit" class="btn btn-info">Submit</button>            
+                                                        </div>
                                                     </form>
-                                                    <ul class="list-separated list-inline-xs hide">
-
-                                                    </ul>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <!-- END PAGE CONTENT INNER -->
                                 </div>
                             </div>
@@ -153,7 +134,6 @@
                         <a href="javascript:;" class="page-quick-sidebar-toggler">
                             <i class="icon-login"></i>
                         </a>
-
                         <!-- END QUICK SIDEBAR -->
                     </div>
                     <!-- END CONTAINER -->
@@ -162,17 +142,16 @@
             <div class="page-wrapper-row">
                 <div class="page-wrapper-bottom">
                     <!-- BEGIN FOOTER -->
-
                     <?php include_once ('functions/footer.php'); ?>   
                     <!-- END FOOTER -->
                 </div>
             </div>
         </div>
         <!--[if lt IE 9]>
-<script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
-<script src="assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
+        <script src="assets/global/plugins/respond.min.js"></script>
+        <script src="assets/global/plugins/excanvas.min.js"></script> 
+        <script src="assets/global/plugins/ie8.fix.min.js"></script> 
+        <![endif]-->
         <?php include_once ('dependencies/bottom_resources.php'); ?>   
     </body>
 

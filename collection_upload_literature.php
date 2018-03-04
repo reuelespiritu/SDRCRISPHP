@@ -13,8 +13,10 @@
 
             if ($_FILES['fileupload']['name'] == "RRL.csv") {
                 $view_result = submit_literatureupload($_SESSION['project'], $imgData, $_SESSION['userid']);
-         
-                print_r($view_result);
+          if(isset($view_result)||is_array($view_result)){
+                    $errorarray=$view_result;
+                    
+                }
             } else {
                 echo "<script type='text/javascript'>alert('Please upload the standard file!');</script>";
             }
@@ -32,7 +34,6 @@
         ?>    
     </head>
     <!-- END HEAD -->
-
     <body class="page-container-bg-solid page-md">
         <div class="page-wrapper">
             <div class="page-wrapper-row">
@@ -81,8 +82,6 @@
                                     <!-- END PAGE BREADCRUMBS -->
                                     <!----BODY--->
                                     <div class="page-content-inner">
-                                        <!----BODY--->
-
                                         <!-- BEGIN PAGE CONTENT INNER -->
                                         <div class="page-content-inner">
                                             <!----BODY--->
@@ -127,8 +126,6 @@
                                                                             </optgroup>
                                                                         </select>
                                                                     </div>
-
-
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail">Source</label>
                                                                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Source" name="source" required>
@@ -138,19 +135,13 @@
                                                                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Key Words" name="keywords" required data-role="tagsinput">
                                                                     </div>
                                                                     <div class="pull-left">
-                                                                        <input type="submit" class="btn btn-info" value="Submit Literature">
-                                                                                                                                                                    
-                                                           
+                                                                        <button type="submit" class="btn btn-info">Submit Literature</button>                                                                                                                                                                    
                                                                     </div>
-                                                                    <ul class="list-separated list-inline-xs hide">
-
-                                                                    </ul>
                                                                 </form>
                                                             </div>							
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="col-md-6 col-sm-15">
                                                     <div class="portlet light ">
                                                         <div class="portlet-title">
@@ -180,13 +171,9 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="pull-left" style="padding-left: 15px;">
-                                                                        <input type="submit" class="btn btn-info" value="Submit">
+                                                                        <button type="submit" class="btn btn-info">Submit</button>
                                                                     </div>
-                                                                    <ul class="list-separated list-inline-xs hide">
-
-                                                                    </ul>
                                                                 </form>
-
                                                             </div>							
                                                         </div>
                                                     </div>
@@ -200,7 +187,30 @@
                         </div>
                         <!-- END PAGE CONTENT BODY -->
                         <!-- END CONTENT BODY -->
-                                     <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Saved" data-message="The items you have uploaded has been saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="Confirm">Default Alert</div>
+                                  
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Health Data Uploaded" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="confirm">Default Alert</div>
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Error on Upload" data-message="
+                            <?php 
+                             
+                             if (isset($errorarray)){
+                                 
+                                     $x=0;
+                                     $rowreccurence=array_count_values($errorarray);
+                                     $keysofrowrecurrence= array_keys($rowreccurence);
+                              $message=array();
+                                 foreach ($rowreccurence as $arr){
+                                     $row=$keysofrowrecurrence[$x];
+                                     $rowcomputed=$row+1;
+                                       $msg="There is/are $rowreccurence[$row] errors on row $rowcomputed | ";
+                              echo $msg;
+                                     array_push($message, $msg);
+                                          $x++;
+                                 }
+                             }?>" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="error">Default Alert</div>
+                        <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Budget Catetgory Update" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="update">Default Alert</div>
+
+                        
+                            <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Saved" data-message="The items you have uploaded has been saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="Confirm">Default Alert</div>
 
                     </div>
                     <!-- END CONTENT -->
@@ -209,10 +219,8 @@
                         <i class="icon-login"></i>
                     </a>
                     <!-- END QUICK SIDEBAR -->
-                    
                 </div>
-                <!-- END CONTAINER -->
-    
+                <!-- END CONTAINER -->    
             </div>
         </div>
         <div class="page-wrapper-row">
@@ -229,16 +237,23 @@
     <script src="assets/global/plugins/ie8.fix.min.js"></script> 
     <![endif]-->
     <?php include_once ('dependencies/bottom_resources.php'); ?>   
-    <script>
-        
-    
-    <?php
-    if(isset($view_result)&&$view_result!=FALSE)
-    echo'$(document).ready(function(){ 
-                document.getElementById("Confirm").click();
-            });';
-?>
-    </script>
+     <script>
+        <?php
+        if (isset($view_result) && $view_result == 1) {
+            echo'$(document).ready(function(){ 
+                       document.getElementById("confirm").click();
+        });';
+        } else if (isset($errorarray)) {
+            echo'$(document).ready(function(){ 
+                       document.getElementById("error").click();
+        });';
+        } else if (isset($view_result) && $view_result == 3) {
+            echo'$(document).ready(function(){ 
+                       document.getElementById("update").click();
+        });';
+        }
+        ?>
+        </script>
 </body>
 
 </html>

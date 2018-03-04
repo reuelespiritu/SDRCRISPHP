@@ -12,7 +12,6 @@
         ?>    
     </head>
     <!-- END HEAD -->
-
     <body class="page-container-bg-solid page-md">
         <div class="page-wrapper">
             <div class="page-wrapper-row">
@@ -122,8 +121,6 @@
                                                                             $query_result = generate_all_literature_listings();
                                                                             if ($query_result != FALSE) {
                                                                                 foreach ($query_result as $arr_result) {
-                                                                         
-                                                                    
                                                                         echo'
                                                                         <tr>
                                                                             <td class="table-status">
@@ -145,10 +142,9 @@
                                                                             <td class="table-literature">'.$arr_result['type'].'</td>
                                                                             <td class="table-desc"> '.$arr_result['abstract'].'</td>
                                                                         </tr>
-                                                                   ';
+                                                                        ';
                                                                                 }
-                                                                            }?>
-                                                                        
+                                                                        }?>
                                                                     </tbody>
                                                                 </table>
                                                             </div>

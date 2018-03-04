@@ -6,9 +6,9 @@ function getallfundingorganization() {
 
     require_once('dbconnect.php');
 
-    $query = "SELECT * FROM funding WHERE active = 1";
+    $query = "SELECT f.fundingorganizationID, f.fundingorganization_name, f.description, (SELECT fot.name FROM funding_organization_type fot WHERE fot.fundingorganization_typeID=f.fundingorganization_type) AS 'organizationType' FROM funding f WHERE active = 1";
     $con = createconnection();
-
+    
     if (isset($query)) {
         $result = mysqli_query($con, $query);
 

@@ -22,7 +22,6 @@
         ?>
     </head>
     <!-- END HEAD -->
-
     <body class="page-container-bg-solid page-md">
         <div class="page-wrapper">
             <div class="page-wrapper-row">
@@ -70,10 +69,7 @@
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
                                     <!----BODY--->
-
                                     <div class="page-content-inner">
-                                        <!----BODY--->
-
                                         <!-- BEGIN PAGE CONTENT INNER -->
                                         <div class="page-content-inner">
                                             <!----BODY--->
@@ -88,8 +84,7 @@
                                                         </div>
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
-                                                                
-                                                                    <?php
+                                                                <?php
                                                                 if (isset($_POST['update'])) {
 
                                                                     $query_result = getupdate_fundingorganization($_POST['update']);
@@ -119,7 +114,6 @@
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Select Funding Organization Type</label>
                                                                         <select class="js-example-basic-single form-control" style="width:100%" name="type">
-
                                                                             <?php
                                                                             $query_result = generate_all_fundingorganizationtype();
                                                                             if ($query_result != FALSE) {
@@ -128,32 +122,19 @@
                                                                                 }
                                                                             }
                                                                             ?>
-
                                                                         </select>
                                                                     </div>
-
                                                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
-
                                                                     <input type="hidden" name="submittype" value="<?php
                                                                     if ($name == NULL) {
                                                                         echo "REGISTER";
                                                                     }
                                                                     ?>">
-
                                                                     <div class="pull-left">
-
-                                                                        <input type="submit" class="btn btn-info" value="Submit Funding Organization">
-
+                                                                        <button type="submit" class="btn btn-info">Submit Funding Organization</button>
                                                                     </div>                                              
                                                                 </form>
-
                                                             </div>							
-
-
-                                                            <ul class="list-separated list-inline-xs hide">
-
-                                                            </ul>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -170,21 +151,17 @@
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
                                                                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                                                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                        <table class="table table-bordered table-striped table-hover" id="sample_2">
                                                                             <thead>
                                                                                 <tr>
-                                                                                    <th width="40%">Name</th>
-                                                                                    <th width="60%">Description</th>
+                                                                                    <th width="30%">Name</th>
+                                                                                    <th width="40%">Description</th>
+                                                                                    <th width="20%">Type</th>
                                                                                     <th></th>
                                                                                     <th></th>
                                                                                 </tr>
                                                                             </thead>
-                                                                            <tfoot>
-                                                                                <tr>
-                                                                                </tr>
-                                                                            </tfoot>
                                                                             <tbody>
-
                                                                                 <?php
                                                                                 $query_result = generate_all_fundingorganization();
                                                                                 if ($query_result != FALSE) {
@@ -192,38 +169,30 @@
                                                                                         echo'   <tr>
                                                                                     <td>' . $arr_result['fundingorganization_name'] . '</td>
                                                                                     <td>' . $arr_result['description'] . '</td>
-                                                                                    <td><button name="deactivate" value="' . $arr_result['fundingorganizationID'] . '" class="btn btn-danger btn-lg"/><span class="glyphicon glyphicon-trash"></span></td>
-                                                                                     <td><button name="update" value="' . $arr_result['fundingorganizationID'] . '" class="btn btn-warning btn-lg"/><span class="glyphicon glyphicon-wrench"></span></td>'
+                                                                                    <td>' . $arr_result['organizationType'] . '</td>
+                                                                                    <td><button name="deactivate" value="' . $arr_result['fundingorganizationID'] . '" class="btn btn-danger btn-lg"/><span class="fa fa-power-off"></span></td>
+                                                                                     <td><button name="update" value="' . $arr_result['fundingorganizationID'] . '" class="btn btn-warning btn-lg"/><span class="fa fa-pencil"></span></td>'
                                                                                         . '      </tr>';
                                                                                     }
                                                                                 }
                                                                                 ?>      
-
                                                                             </tbody>
                                                                         </table>
                                                                     </form>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <ul class="list-separated list-inline-xs hide">
-
-                                                        </ul>
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-
-
                                 </div>
                                 <!-- END PAGE CONTENT INNER -->
                             </div>
                         </div>
                         <!-- END PAGE CONTENT BODY -->
                         <!-- END CONTENT BODY -->
-                        
                         
                         <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Funding Organization Registered" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="confirm">Default Alert</div>
                         <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Funding Organization Deleted" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="delete">Default Alert</div>
@@ -258,7 +227,7 @@
      
 
 
-        <script>s
+        <script>
 
 <?php
 if (isset($view_result) && $view_result == 1) {

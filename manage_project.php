@@ -68,9 +68,6 @@
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
-                                    <!----BODY--->
-
-
                                     <div class="page-content-inner">
                                         <!----BODY--->
                                         <div class="row">
@@ -80,15 +77,13 @@
                                                         <div class="caption caption-md">
                                                             <i class="icon-bar-chart font-dark hide"></i>
                                                             <span class="caption-subject font-green-steel uppercase bold">REGISTERED PROJECTS</span>
-
                                                         </div>
                                                     </div>
-
                                                     <div class="portlet-body">
                                                         <div class="row list-separated">
                                                             <div class="table-responsive">
                                                                 <form method="post" action="<?php ($_SERVER["PHP_SELF"]) ?>">
-                                                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                    <table class="table table-bordered table-striped table-hover" id="sample_2">
                                                                         <thead>
                                                                             <tr>
                                                                                 <th width="20%">Name</th>
@@ -104,26 +99,24 @@
                                                                             </tr>
                                                                         </tfoot>
                                                                         <tbody>
-
-
                                                                             <?php
                                                                             $query_result = generate_all_projects();
 
                                                                             if ($query_result != FALSE) {
                                                                                 foreach ($query_result as $project) {
                                                                                     echo' 
-                                          <tr>
-                                          <td>' . $project['name'] . '</td>
-                                          <td>' . $project['description'] . '</td>
-                                          <td>' . $project['startdate'] . '</td>
-                                           <td>' . $project['enddate'] . '</td>
-                                                                                <td>  
-                                                                                    <button name="deactivate" type="submit" class="btn btn-danger btn-lg" value="' . $project['projectID'] . ' " onClick="alert(\'The project ' . $project['name'] . ' has been deleted from the system\')"  />
-                                                                                    <span class="glyphicon glyphicon-trash"></span>
-                                                                                </td>  
-                                                                                <td>  
+                                                                                    <tr>
+                                                                                    <td>' . $project['name'] . '</td>
+                                                                                    <td>' . $project['description'] . '</td>
+                                                                                    <td>' . $project['startdate'] . '</td>
+                                                                                    <td>' . $project['enddate'] . '</td>
+                                                                                    <td>  
+                                                                                        <button name="deactivate" type="submit" class="btn btn-danger btn-lg" value="' . $project['projectID'] . ' " onClick="alert(\'The project ' . $project['name'] . ' has been deleted from the system\')"  />
+                                                                                        <span class="fa fa-power-off"></span>
+                                                                                    </td>  
+                                                                                     <td>  
                                                                                     <button name="update" type="submit" class="btn btn-warning btn-lg" value="' . $project['projectID'] . '" />
-                                                                                    <span class="glyphicon glyphicon-wrench"></span>
+                                                                                    <span class="fa fa-pencil"></span>
                                                                                 </td>';
                                                                                 }
                                                                             } else {
@@ -132,28 +125,16 @@
                                                                             ?>
                                                                             </tr>
                                                                         </tbody>
-
-
                                                                     </table>
                                                                 </form>
                                                             </div>
-
-                                                            <br>
-
                                                         </div>
                                                         <a href="register_new_project.php" class="btn btn-info" role="button">CREATE NEW PROJECT</a>
                                                     </div>
-                                                    <ul class="list-separated list-inline-xs hide">
-
-
-                                                    </ul>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <!-- END PAGE CONTENT INNER -->
                                 </div>
                             </div>
@@ -174,17 +155,16 @@
             <div class="page-wrapper-row">
                 <div class="page-wrapper-bottom">
                     <!-- BEGIN FOOTER -->
-
                     <?php include_once ('functions/footer.php'); ?>   
                     <!-- END FOOTER -->
                 </div>
             </div>
         </div>
         <!--[if lt IE 9]>
-<script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
-<script src="assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
+        <script src="assets/global/plugins/respond.min.js"></script>
+        <script src="assets/global/plugins/excanvas.min.js"></script> 
+        <script src="assets/global/plugins/ie8.fix.min.js"></script> 
+        <![endif]-->
         <?php include_once ('dependencies/bottom_resources.php'); ?>   
     </body>
 

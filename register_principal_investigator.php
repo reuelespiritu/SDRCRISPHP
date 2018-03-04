@@ -65,9 +65,7 @@
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
-                                    <!----BODY--->
                                     <form method="post" action="<?php ($_SERVER["PHP_SELF"]) ?>">
-
                                         <div class="page-content-inner">
                                             <!----BODY--->
                                             <div class="row">
@@ -79,7 +77,6 @@
                                                                 <span class="caption-subject font-green-steel uppercase bold">SELECT A PROJECT</span>
                                                             </div>
                                                         </div>
-
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
                                                                 <select class="js-example-basic-single form-control" name="project" style="width:100%">
@@ -98,21 +95,11 @@
                                                                 </select>
                                                                 <br>
                                                             </div>
-
-
-
                                                         </div>
-                                                        <ul class="list-separated list-inline-xs hide">
-
-                                                        </ul>
-
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
                                         <div class="page-content-inner">
                                             <!----BODY--->
                                             <div class="row">
@@ -124,12 +111,10 @@
                                                                 <span class="caption-subject font-green-steel uppercase bold">SELECT AN AVAILABLE RESEARCHER</span>
                                                             </div>
                                                         </div>
-
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
-
-                                                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                    <table class="table table-bordered table-striped table-hover" id="sample_2">
                                                                         <thead>
                                                                             <tr>
                                                                                 <th width="10%">First Name</th>
@@ -155,48 +140,35 @@
                                                                                 if ($query_result != FALSE) {
                                                                                     foreach ($query_result as $user) {
                                                                                         echo' 
-                                          <tr>
-                                          <td>' . $user['firstname'] . '</td>
-                                          <td>' . $user['middlename'] . '</td>
-                                          <td>' . $user['lastname'] . '</td>
-                                           <td>' . $user['email'] . '</td>
-                                           <td>' . $user['specializations'] . '</td>
-                                           <td>' . $user['masters'] . '</td>
-                                           <td>' . $user['doctorate'] . '</td>
-                                           <td>' . $user['registrationdate'] . '</td>
-                                           <td align="center">
-    `                                      <input type="radio" name="researcher" value="' . $user['userID'] . '"> <br>
-                                           </td>';
+                                                                                        <tr>
+                                                                                        <td>' . $user['firstname'] . '</td>
+                                                                                        <td>' . $user['middlename'] . '</td>
+                                                                                        <td>' . $user['lastname'] . '</td>
+                                                                                        <td>' . $user['email'] . '</td>
+                                                                                        <td>' . $user['specializations'] . '</td>
+                                                                                        <td>' . $user['masters'] . '</td>
+                                                                                        <td>' . $user['doctorate'] . '</td>
+                                                                                        <td>' . $user['registrationdate'] . '</td>
+                                                                                        <td align="center">
+                                                 `                                      <input type="radio" name="researcher" value="' . $user['userID'] . '"> <br>
+                                                                                        </td>';
                                                                                     }
                                                                                 } else {
                                                                                     echo "<div align=\"center\" style=\"color:red\"><b>NO PERSON AVAILABLE TO REGISTER AS PRINCIPAL INVESTIGATOR</b></div>";
                                                                                 }
                                                                                 ?>
-
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
                                                                 <br>
                                                             </div>
-
-
-
                                                         </div>
-                                                        <ul class="list-separated list-inline-xs hide">
-
-                                                        </ul>
-
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
-
-                                        <input type="submit" class="btn btn-info pull-right" value="REGISTER PRINCIPAL INVESTIGATOR" >
-
+                                        <button type="submit" class="btn btn-info pull-right">REGISTER PRINCIPAL INVESTIGATOR</button>
                                     </form>
                                     <!-- END PAGE CONTENT INNER -->
                                 </div>

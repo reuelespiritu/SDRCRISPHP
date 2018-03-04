@@ -5,7 +5,7 @@
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="dashboard.php">
-                    <img src="assets/pages/img/sdrc-header-logo.png" style="height: 80px; style="margin: 1px 0 0 0;" alt="sdrc logo" class="logo-default">
+                    <img src="assets/pages/img/sdrc-header-logo.png" style="height: 80px; margin: 1px 0 0 0;" alt="sdrc logo" class="logo-default">
                 </a>
             </div>
             <br>

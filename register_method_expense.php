@@ -68,10 +68,7 @@
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
                                     <!----BODY--->
-
                                     <div class="page-content-inner">
-                                        <!----BODY--->
-
                                         <!-- BEGIN PAGE CONTENT INNER -->
                                         <div class="page-content-inner">
                                             <!----BODY--->
@@ -81,12 +78,8 @@
                                                         <div class="portlet-title">
                                                             <div class="caption caption-md">
                                                                 <i class="icon-bar-chart font-dark hide"></i>
-
-
                                                                 <span class="caption-subject font-green-steel uppercase bold">REGISTER EXPENSE PAYMENT METHODS</span>
-
                                                             </div>
-
                                                         </div>
                                                         <div class="portlet-body">
                                                             <div class="row list-separated">
@@ -108,7 +101,6 @@
                                                                     $id = "";
                                                                 }
                                                                 ?>
-
                                                                 <form class="col-md-10" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Name</label>
@@ -125,23 +117,11 @@
                                                                         echo "REGISTER";
                                                                     }
                                                                     ?>">
-
-
-
                                                                     <div class="pull-left">
-
-                                                                        <input type="submit" class="btn btn-info" value="Submit Expense Method">
-
+                                                                        <button type="submit" class="btn btn-info">Submit Expense Method</button>
                                                                     </div>                                              
                                                                 </form>
-
                                                             </div>							
-
-
-                                                            <ul class="list-separated list-inline-xs hide">
-
-                                                            </ul>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -158,7 +138,7 @@
                                                             <div class="row list-separated">
                                                                 <div class="table-responsive">
                                                                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                                                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                                        <table class="table table-bordered table-striped table-hover" id="sample_2">
                                                                             <thead>
                                                                                 <tr>
                                                                                     <th width="40%">Name</th>
@@ -180,29 +160,23 @@
                                                                                         echo'   <tr>
                                                                                     <td>' . $arr_result['name'] . '</td>
                                                                                     <td>' . $arr_result['description'] . '</td>
-                                                                                    <td><button name="deactivate" value="' . $arr_result['expensemethodID'] . '" class="btn btn-danger btn-lg"/><span class="glyphicon glyphicon-trash"></span></td>
-                                                                                     <td><button name="update" value="' . $arr_result['expensemethodID'] . '" class="btn btn-warning btn-lg"/><span class="glyphicon glyphicon-wrench"></span></td>'
+                                                                                    <td><button name="deactivate" value="' . $arr_result['expensemethodID'] . '" class="btn btn-danger btn-lg"/><span class="fa fa-power-off"></span></td>
+                                                                                     <td><button name="update" value="' . $arr_result['expensemethodID'] . '" class="btn btn-warning btn-lg"/><span class="fa fa-pencil"></span></td>'
                                                                                         . '      </tr>';
                                                                                     }
                                                                                 }
                                                                                 ?>
-
                                                                             </tbody>
                                                                         </table>
                                                                     </form>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <ul class="list-separated list-inline-xs hide">
-                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-
-
                                 </div>
                                 <!-- END PAGE CONTENT INNER -->
                             </div>
@@ -213,7 +187,6 @@
                         <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Expense Method Registered" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="confirm">Default Alert</div>
                         <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Expense Method Deleted" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="delete">Default Alert</div>
                         <div style="display: none;" class="btn btn-default mt-sweetalert" data-title="Expense Method Update" data-message="The information you have entered has been successfully saved" data-allow-outside-click="true" data-confirm-button-class="btn-default" id ="update">Default Alert</div>
-
 
                     </div>
                     <!-- END CONTENT -->
@@ -230,36 +203,32 @@
         <div class="page-wrapper-row">
             <div class="page-wrapper-bottom">
                 <!-- BEGIN FOOTER -->
-
                 <?php include_once ('functions/footer.php'); ?>   
                 <!-- END FOOTER -->
             </div>
         </div>
         <!--[if lt IE 9]>
-    <script src="assets/global/plugins/respond.min.js"></script>
-    <script src="assets/global/plugins/excanvas.min.js"></script> 
-    <script src="assets/global/plugins/ie8.fix.min.js"></script> 
-    <![endif]-->
+        <script src="assets/global/plugins/respond.min.js"></script>
+        <script src="assets/global/plugins/excanvas.min.js"></script> 
+        <script src="assets/global/plugins/ie8.fix.min.js"></script> 
+        <![endif]-->
         <?php include_once ('dependencies/bottom_resources.php'); ?>   
         <script>
-
-<?php
-if (isset($view_result) && $view_result == 1) {
-    echo'$(document).ready(function(){ 
-                    document.getElementById("confirm").click();
-    });';
-} else if (isset($view_result) && $view_result == 2) {
-    echo'$(document).ready(function(){ 
-                    document.getElementById("delete").click();
-    });';
-} else if (isset($view_result) && $view_result == 3) {
-    echo'$(document).ready(function(){ 
-                    document.getElementById("update").click();
-    });';
-}
-?></script>
-
-
+        <?php
+        if (isset($view_result) && $view_result == 1) {
+            echo'$(document).ready(function(){ 
+                            document.getElementById("confirm").click();
+            });';
+        } else if (isset($view_result) && $view_result == 2) {
+            echo'$(document).ready(function(){ 
+                            document.getElementById("delete").click();
+            });';
+        } else if (isset($view_result) && $view_result == 3) {
+            echo'$(document).ready(function(){ 
+                            document.getElementById("update").click();
+            });';
+        }
+        ?>
+        </script>
     </body>
-
 </html>
