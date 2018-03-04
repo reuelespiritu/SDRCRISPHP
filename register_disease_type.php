@@ -119,6 +119,8 @@
                                                                                 <th width="25%">Name of Disease</th>
                                                                                 <th width="50%">Description</th>
                                                                                 <th width="25%">Type of Disease</th>
+                                                                                <th>Deactivate</th>
+                                                                                <th>Update</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tfoot>

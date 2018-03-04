@@ -159,8 +159,8 @@
                                                                                         echo'   <tr>
                                                                                     <td>' . $arr_result['name'] . '</td>
                                                                                     <td>' . $arr_result['description'] . '</td>
-                                                                                    <td><button name="deactivate" value="' . $arr_result['typeOfLitID'] . '" class="btn btn-danger btn-lg"/><span class="fa fa-power-off"></span></td>
-                                                                                    <td><button name="update" value="' . $arr_result['typeOfLitID'] . '" class="btn btn-warning btn-lg"/><span class="fa fa-pencil"></span></td>'
+                                                                                    <td align="center"><button name="deactivate" value="' . $arr_result['typeOfLitID'] . '" class="btn btn-danger btn-md"/><span class="fa fa-remove"></span></td>
+                                                                                    <td align="center"><button name="update" value="' . $arr_result['typeOfLitID'] . '" class="btn btn-warning btn-md"/><span class="fa fa-pencil"></span></td>'
                                                                                         . '      </tr>';
                                                                                     }
                                                                                 }

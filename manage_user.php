@@ -120,12 +120,12 @@
                                                                                     <td>' . $user['masters'] . '</td>
                                                                                     <td>' . $user['doctorate'] . '</td>
                                                                                     <td>' . $user['registrationdate'] . '</td>
-                                                                                    <td> 
-                                                                                        <button name="deactivate" type="submit" class="btn btn-danger btn-lg" value="' . $user['userID'] . ' " onClick="alert(\'User: ' . $user['firstname'] . '  ' . $user['lastname'] . ' account has been successfully deactivated!\')"  />
-                                                                                        <span class="fa fa-power-off"></span>
+                                                                                    <td align="center">
+                                                                                        <button name="deactivate" type="submit" class="btn btn-danger btn-md" value="' . $user['userID'] . ' " onClick="alert(\'User: ' . $user['firstname'] . '  ' . $user['lastname'] . ' account has been successfully deactivated!\')"  />
+                                                                                        <span class="fa fa-remove"></span>
                                                                                     </td>  
-                                                                                    <td>  
-                                                                                        <button name="update" type="submit" class="btn btn-warning btn-lg" value="' . $user['userID'] . '" />
+                                                                                    <td align="center">  
+                                                                                        <button name="update" type="submit" class="btn btn-warning btn-md" value="' . $user['userID'] . '" />
                                                                                         <span class="fa fa-pencil"></span>
                                                                                     </td>';
                                                                                     }

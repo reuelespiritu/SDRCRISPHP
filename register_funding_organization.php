@@ -157,8 +157,8 @@
                                                                                     <th width="30%">Name</th>
                                                                                     <th width="40%">Description</th>
                                                                                     <th width="20%">Type</th>
-                                                                                    <th></th>
-                                                                                    <th></th>
+                                                                                    <th width="5%">Deactivate</th>
+                                                                                    <th width="5%">Update</th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
@@ -170,8 +170,8 @@
                                                                                     <td>' . $arr_result['fundingorganization_name'] . '</td>
                                                                                     <td>' . $arr_result['description'] . '</td>
                                                                                     <td>' . $arr_result['organizationType'] . '</td>
-                                                                                    <td><button name="deactivate" value="' . $arr_result['fundingorganizationID'] . '" class="btn btn-danger btn-lg"/><span class="fa fa-power-off"></span></td>
-                                                                                     <td><button name="update" value="' . $arr_result['fundingorganizationID'] . '" class="btn btn-warning btn-lg"/><span class="fa fa-pencil"></span></td>'
+                                                                                    <td align="center"><button name="deactivate" value="' . $arr_result['fundingorganizationID'] . '" class="btn btn-danger btn-md"/><span class="fa fa-remove"></span></td>
+                                                                                    <td align="center"><button name="update" value="' . $arr_result['fundingorganizationID'] . '" class="btn btn-warning btn-md"/><span class="fa fa-pencil"></span></td>'
                                                                                         . '      </tr>';
                                                                                     }
                                                                                 }
