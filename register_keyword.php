@@ -93,7 +93,7 @@
                                                                                     foreach ($query_result as $arr_result) {
                                                                                         echo'   <tr>
                                                                                     <td width="40%">' . $arr_result['keyword'] . '</td>
-                                                                                    <td width="60%"><button name="deactivate" value="' . $arr_result['keywordID'] . '" class="btn btn-danger btn-lg"/><span class="glyphicon glyphicon-trash"></span></td>
+                                                                                    <td width="60%" align="center"><button name="deactivate" value="' . $arr_result['keywordID'] . '" class="btn btn-danger btn-md"/><span class="fa fa-remove"></span></td>
                                                                                     </tr>';
                                                                                     }
                                                                                 }

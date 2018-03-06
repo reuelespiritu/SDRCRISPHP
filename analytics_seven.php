@@ -30,7 +30,7 @@
                                 <div class="container">
                                     <!-- BEGIN PAGE TITLE -->
                                     <div class="page-title">
-                                        <h1>Dashboard</h1>
+                                        <h1>Sum Of All Event Data</h1>
                                     </div>
                                     <!-- END PAGE TITLE -->
                                     <!-- BEGIN PAGE TOOLBAR -->
@@ -47,26 +47,40 @@
                                     <!-- BEGIN PAGE BREADCRUMBS -->
                                     <ul class="page-breadcrumb breadcrumb">
                                         <li>
-                                            <a href="">Home</a>
+                                            <a href="">Analytics</a>
                                             <i class="fa fa-circle"></i>
                                         </li>
                                         <li>
-                                            <span>Dashboard</span>
+                                            <span>Sum Of All Event Data</span>
                                         </li>
                                     </ul>
                                     <!-- END PAGE BREADCRUMBS -->
                                     <!-- BEGIN PAGE CONTENT INNER -->
                                     <div class="page-content-inner">
                                         				
+                                    </div>
+                                    <!-- BEGIN ROW -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- BEGIN CHART PORTLET-->
+                                            <div class="portlet light ">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <span class="caption-subject bold uppercase font-green-haze">SUM OF ALL EVENT DATA</span>
+                                                    </div>
+                                                    <div class="tools">
+                                                        <a href="javascript:;" class="collapse"> </a>
+                                                        <a href="javascript:;" class="fullscreen"> </a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div id="chartdiv" style="width:100%;height:500px"></div>
+                                                </div>
+                                            </div>
+                                            <!-- END CHART PORTLET-->
                                         </div>
-                                        <!-- BEGIN ROW -->
-                                     
-                                        <!-- END ROW -->
-                                        
-                                        <!-- BEGIN ROW -->
-                                        
-<div id="chartdiv" style="width:100%;height:500px"></div>
-                                        <!-- END ROW -->
+                                    </div>
+                                    <!-- END ROW -->
                                     </div>
                                     <!-- END PAGE CONTENT INNER -->
                                 </div>
@@ -99,7 +113,35 @@
         <![endif]-->  
         <?php include_once ('dependencies/bottom_resources.php');?> 
         
-<script src="assets/apps/pen.js"></script>
+<script>
+var chart = AmCharts.makeChart( "chartdiv", {
+  "type": "pie",
+  "theme": "light",
+  "dataProvider": 
+  <?php require_once 'data.php';
+$year=null;
+$month=null;
+$region=null;
+$city=null;
+$facility=null;
+$barangay=null;
+$uploadedBy=null;
+$uploadDate=null;
+
+sumhid_nonfunctional($year, $month, $region, $city, $barangay, $facility, $uploadedBy, $uploadDate);?>,
+
+  "valueField": "functional",
+  "titleField": "facility",
+  "outlineAlpha": 0.4,
+  "depth3D": 15,
+  "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+  "angle": 30,
+  "export": {
+    "enabled": true
+  }
+} );</script>
+
+
     </body>
 
 </html>

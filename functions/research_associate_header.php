@@ -88,31 +88,4 @@
             </li>
         </ul>
     </li>
-
-    <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">
-        <a href="javascript:;"> Additional Data Fields
-            <span class="arrow"></span>
-        </a>
-        <ul class="dropdown-menu pull-left">
-
-            <li aria-haspopup="true" class=" ">
-                <a href="register_category_of_literature.php" class="nav-link">
-                    <i class="glyphicon glyphicon-list"></i> RRL - Category of Literature
-                </a>
-            </li>
-
-            <li aria-haspopup="true" class="">
-                <a href="register_type_of_literature.php" class="nav-link">
-                    <i class="glyphicon glyphicon-list"></i> RRL - Type of Literature</a>
-            </li>
-
-
-
-            <li aria-haspopup="true" class="">
-                <a href="register_keyword.php" class="nav-link">
-                    <i class="glyphicon glyphicon-list"></i> RRL - Register Keyword</a>
-            </li>
-        </ul>
-    </li>
-    
 </ul>

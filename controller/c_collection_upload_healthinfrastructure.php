@@ -1,11 +1,10 @@
 <?php
 
 require_once ('model/m_health_infrastructure_damages.php');
-require_once ('model/m_water_system_damages.php');
-require_once ('model/m_level_of_hospital.php');
-require_once ('model/m_infrastructure_damages.php');
+require_once ('model/m_facilities.php');
 
-function submit_health_infrastructure_damages($projectid, $data, $userid) {
+function submit_health_infrastructure_damages($projectID, $data, $userid) {
+    if ($data['type'] == "application/vnd.ms-excel") {
         $fh = fopen($data['tmp_name'], 'r+');
         $lines = array();
         while (($row = fgetcsv($fh, 8192)) !== FALSE) {
@@ -13,163 +12,117 @@ function submit_health_infrastructure_damages($projectid, $data, $userid) {
         }
 
         $x = 0;
-        
-    $arr_content = array();
+        $arr_content = array();
         $checker = array();
-        
         foreach ($lines as $arr_result) {
-            
-            
-        if($x>0){
-            $year = $arr_result[0];
-            if ($year == NULL || $year<0) {
-                array_push($checker, $x);
-            }
-            $month = $arr_result[1];
-            if ($month == NULL || !is_string($month)) {
-                array_push($checker, $x);
-            }
-            $region = $arr_result[2];
-            if ($region == NULL || !is_string($region)) {
-                array_push($checker, $x);
-            }
-            $city = $arr_result[3];
-            if ($city == NULL || !is_string($city)) {
-                array_push($checker, $x);
-            }
-            $barangay = $arr_result[4];
-            if ($barangay == NULL || !is_string($barangay)) {
-                array_push($checker, $x);
-            }
-            $incident = $arr_result[5];
-            if ($incident == NULL || !is_string($incident)) {
-                array_push($checker, $x);
-            }
-            $number_of_incidents = $arr_result[6];
-            if ($number_of_incidents == NULL || $number_of_incidents<0) {
-                array_push($checker, $x);
-            }
-            $infradamagetype = $arr_result[7];
-            $infradamagetype = compareinfrastructuredamages($infradamagetype);
-            
-            if ($infradamagetype <= 0) {
-                array_push($checker, $x);
-            }
+            if ($x > 0) {
+                $year = $arr_result[0];
+                if ($year == NULL) {
+                    array_push($checker, $x);
+                }
+                $month = $arr_result[1];
+                if ($month == NULL || !is_string($month)) {
+                    array_push($checker, $x);
+                }
+                $region = $arr_result[2];
+                if ($region == NULL || !is_string($region)) {
+                    array_push($checker, $x);
+                }
+                $city = $arr_result[3];
+                if ($city == NULL || !is_string($city)) {
+                    array_push($checker, $x);
+                }
+                $barangay = $arr_result[4];
+                if ($barangay == NULL || !is_string($barangay)) {
+                    array_push($checker, $x);
+                }
+                $d = $arr_result[5];
+                $facility = comparefacility($d);
+                if ($facility <= 0) {
+                    array_push($checker, $x);
+                }
+                $existing = $arr_result[6];
+                if ($existing == NULL || $existing < 0) {
+                    array_push($checker, $x);
+                }
+                $available_for_use = $arr_result[7];
+                if ($available_for_use < 0) {
+                    array_push($checker, $x);
+                }
+                $damaged_by_event_incident = $arr_result[8];
+                if ($damaged_by_event_incident < 0) {
+                    array_push($checker, $x);
+                }
 
-            $hospital = $arr_result[8];
-            if ($hospital == NULL || !is_string($hospital)) {
-                array_push($checker, $x);
-            }
-            
-            $hospitallevel = $arr_result[9];
-            $hospitallevel = comparelevelofhospital($hospitallevel);
-            if ($hospitallevel <= 0) {
-                array_push($checker, $x);
-            }
 
-            $watersysdamagetype = $arr_result[10];
-          $watersysdamagetype = comparewatersystemdamages($watersysdamagetype);
-            if ($watersysdamagetype <= 0) {
-                array_push($checker, $x);
+                $functional = $arr_result[9];
+                if ($functional == "YES") {
+                    $functional = 1;
+                } else {
+                    $functional = 2;
+                }
+                if ($functional == NULL) {
+                    array_push($checker, $x);
+                }
+
+                $newdata = array(
+                    'year' => $year,
+                    'month' => $month,
+                    'region' => $region,
+                    'city' => $city,
+                    'barangay' => $barangay,
+                    'facility' => $facility,
+                    'existing' => $existing,
+                    'available_for_use' => $available_for_use,
+                    'damaged_by_event_incident' => $damaged_by_event_incident,
+                    'functional' => $functional,
+                    'uploadedby' => $userid,
+                    'project' => $projectID
+                );
+                array_push($arr_content, $newdata);
             }
-      
-            $projectID = $projectid;
-            $userID = $userid;
-            
-            $newdata = array(
-                'year' => $year,
-                'month' => $month,
-                'region' => $region,
-                'city' => $city,
-                'barangay' => $barangay,
-                'incident' => $incident,
-                'numberofincidents' => $number_of_incidents,
-                'infrastructuredamagetype' => $infradamagetype,
-                'hospital' => $hospital,
-                'hospitallevel' => $hospitallevel,
-                'watersystemdamagetype' => $watersysdamagetype,
-                'uploadedby' => $userID,
-                'project' => $projectID
-            );
-            array_push($arr_content, $newdata);
-        
-            }  
             $x++;
-}
+        }
 
+        if ($checker == NULL) {
+            foreach ($arr_content as $line) {
+                $year = $line['year'];
+                $month = $line['month'];
+                $region = $line['region'];
+                $city = $line['city'];
+                $barangay = $line['barangay'];
+                $facility = $line['facility'];
+                $existing = $line['existing'];
+                $available_for_use = $line['available_for_use'];
+                $damaged_by_event_incident = $line['damaged_by_event_incident'];
+                $functional = $line['functional'];
+                $uploadedBy = $line['uploadedby'];
+                $projectID = $line['project'];
 
+                uploadhealthinfrastructuredamages($projectID, $year, $month, $region, $city, $barangay, $facility, $existing, $available_for_use, $damaged_by_event_incident, $functional, $uploadedBy);
+                }
+                return 1;
 
-    if ($checker==NULL) {
-        foreach ($arr_content as $line) {
-
-            $year = $line['year'];
-            $month = $line['month'];
-            $region = $line['region'];
-            $city = $line['city'];
-            $barangay = $line['barangay'];
-            $incident = $line['incident'];
-            $number_of_incidents = $line['numberofincidents'];
-            $infrastructureDamageType = $line['infrastructuredamagetype'];
-            $hospital = $line['hospital'];
-            $hospitalLevel = $line['hospitallevel'];
-            $waterSystemDamageID = $line['watersystemdamagetype'];
-            $uploadedBy = $line['uploadedby'];
-            $projectID = $line['project'];
-
-
-            $con_result=uploadhealthinfrastructuredamages($projectID, $year, $month, $region, $city, $barangay, $incident, $number_of_incidents, $infrastructureDamageType, $hospital, $hospitalLevel, $waterSystemDamageID, $uploadedBy); }
-        return $con_result;
-    } else {
-        
-        return $checker;
-        
+        } else {
+            return $checker;
+        }
     }
-
 }
-function submit_form_health_infrastructure_damages($projectid, $infradamage, $infradamagetype, $hospital, $hospitallevel, $watersysdamage, $watersysdamagetype, $userid){
+
+function submit_form_health_infrastructure_damages($projectid, $infradamage, $infradamagetype, $hospital, $hospitallevel, $watersysdamage, $watersysdamagetype, $userid) {
     $controller_result = uploadhealthinfrastructuredamages($projectid, $infradamage, $infradamagetype, $hospital, $hospitallevel, $watersysdamage, $watersysdamagetype, $userid);
-     echo "<script type='text/javascript'>alert('Health Infrastructure Damages entry successfully uploaded!');</script>";
-     
-     header('Location: visualization_healthinfrastructure.php');
+    echo "<script type='text/javascript'>alert('Health Infrastructure Damages entry successfully uploaded!');</script>";
+
+    header('Location: visualization_healthinfrastructure.php');
 }
 
+function comparefacility($facility) {
 
-
-function compareinfrastructuredamages($name) {
-
-    $result = getinfrastructuredamagesfromtext($name);
+    $result = getfacilitybytext($facility);
 
     if ($result != FALSE) {
         foreach ($result as $arr_result) {
-            $keyID = $arr_result['infrastructure_damagesID'];
-        }
-        return $keyID;
-    } else {
-        return 0;
-    }
-}
-
-function comparelevelofhospital($name) {
-
-    $result = getlevelofhospitalbytext($name);
-
-    if ($result != FALSE) {
-        foreach ($result as $arr_result) {
-            $keyID = $arr_result['level_of_hospitalID'];
-        }
-        return $keyID;
-    } else {
-        return 0;
-    }
-}
-
-function comparewatersystemdamages($name) {
-
-    $result = getwatersystemdamagesidfromtext($name);
-
-    if ($result != FALSE) {
-        foreach ($result as $arr_result) {
-            $keyID = $arr_result['water_system_damagesID'];
+            $keyID = $arr_result['facilitiesID'];
         }
         return $keyID;
     } else {

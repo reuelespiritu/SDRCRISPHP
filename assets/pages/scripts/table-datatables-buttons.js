@@ -90,16 +90,7 @@ var TableDatatablesButtons = function () {
                 { extend: 'print', className: 'btn default' },
                 { extend: 'copy', className: 'btn default' },
                 { extend: 'pdf', className: 'btn default' },
-                { extend: 'excel', className: 'btn default' },
-                { extend: 'csv', className: 'btn default' },
-                {
-                    text: 'Reload',
-                    className: 'btn default',
-                    action: function ( e, dt, node, config ) {
-                        //dt.ajax.reload();
-                        alert('Custom Button');
-                    }
-                }
+                { extend: 'csv', className: 'btn default' }
             ],
 
             "order": [

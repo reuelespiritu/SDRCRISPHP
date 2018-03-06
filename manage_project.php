@@ -110,12 +110,12 @@
                                                                                     <td>' . $project['description'] . '</td>
                                                                                     <td>' . $project['startdate'] . '</td>
                                                                                     <td>' . $project['enddate'] . '</td>
-                                                                                    <td>  
-                                                                                        <button name="deactivate" type="submit" class="btn btn-danger btn-lg" value="' . $project['projectID'] . ' " onClick="alert(\'The project ' . $project['name'] . ' has been deleted from the system\')"  />
-                                                                                        <span class="fa fa-power-off"></span>
+                                                                                    <td align="center">  
+                                                                                        <button name="deactivate" type="submit" class="btn btn-danger btn-md" value="' . $project['projectID'] . ' " onClick="alert(\'The project ' . $project['name'] . ' has been deleted from the system\')"  />
+                                                                                        <span class="fa fa-remove"></span>
                                                                                     </td>  
-                                                                                     <td>  
-                                                                                    <button name="update" type="submit" class="btn btn-warning btn-lg" value="' . $project['projectID'] . '" />
+                                                                                    <td align="center">  
+                                                                                    <button name="update" type="submit" class="btn btn-warning btn-md" value="' . $project['projectID'] . '" />
                                                                                     <span class="fa fa-pencil"></span>
                                                                                 </td>';
                                                                                 }

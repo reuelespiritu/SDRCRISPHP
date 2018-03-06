@@ -21,7 +21,7 @@ function submit_eventdata_area($projectid, $data, $userid) {
         foreach ($lines as $arr_result) {
             
         if ($x > 0) {
-            $incident = $arr_result[0];
+            $incident = $arr_result[3];
             if ($incident == NULL || !is_string($incident)) {
                 array_push($checker, $x);
             }
@@ -33,16 +33,16 @@ function submit_eventdata_area($projectid, $data, $userid) {
             if ($month== NULL || $month< 0) {
                 array_push($checker, $x);
             }
-            $municipality = $arr_result[3];
+            $municipality = $arr_result[4];
             if ($municipality == NULL || !is_string($municipality)) {
                 array_push($checker, $x);
             }
-            $barangay = $arr_result[4];
+            $barangay = $arr_result[5];
             if ($barangay == NULL || !is_string($barangay)) {
                 array_push($checker, $x);
             }
-            $region = $arr_result[5];
-            if ($region== NULL || !is_string($region)) {
+            $region = $arr_result[0];
+            if ($region== NULL   || !is_string($region)) {
                 array_push($checker, $x);
             }
             $numofdeaths = $arr_result[6];

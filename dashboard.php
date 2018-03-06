@@ -101,48 +101,7 @@
                                                 <!-- END WIDGET THUMB -->
                                             </div>
                                         </div>
-                                        <!-- BEGIN ROW -->
-                                        <div class="row">
-                                            <div class="col-lg-6 col-xs-12 col-sm-12">
-                                                <!-- BEGIN CHART PORTLET-->
-                                                <div class="portlet light ">
-                                                    <div class="portlet-title">
-                                                        <div class="caption">
-                                                            <span class="caption-subject bold uppercase font-green-haze">Health Data Statistics</span>
-                                                            <span class="caption-helper">Number of Incidents Per Area</span>
-                                                        </div>
-                                                        <div class="tools">
-                                                            <a href="javascript:;" class="collapse"> </a>
-                                                            <a href="javascript:;" class="fullscreen"> </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="portlet-body">
-                                                        <div id="chart_11" class="chart" style="height: 500px;"> </div>
-                                                    </div>
-                                                </div>
-                                                <!-- END CHART PORTLET-->
-                                            </div>
-                                            <div class="col-lg-6 col-xs-12 col-sm-12">
-                                                <!-- BEGIN CHART PORTLET-->
-                                                <div class="portlet light ">
-                                                    <div class="portlet-title">
-                                                        <div class="caption">
-                                                            <span class="caption-subject bold uppercase font-green-haze">Event Data Statistics</span>
-                                                            <span class="caption-helper">Number of Deaths Per Area</span>
-                                                        </div>
-                                                        <div class="tools">
-                                                            <a href="javascript:;" class="collapse"> </a>
-                                                            <a href="javascript:;" class="fullscreen"> </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="portlet-body">
-                                                        <div id="chart_7" class="chart" style="height: 500px;"> </div>
-                                                    </div>
-                                                </div>
-                                                <!-- END CHART PORTLET-->
-                                            </div>
-                                        </div>
-                                        <!-- END ROW -->
+                                        <div><?php include_once ('example_analytics_one.php');?> </div>
                                         <!-- BEGIN ROW -->
                                         <div class="row">
                                             <div class="col-md-12">

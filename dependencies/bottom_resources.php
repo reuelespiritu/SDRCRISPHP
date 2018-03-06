@@ -35,6 +35,7 @@
 <script src="assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
 <script src="assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
 <script src="assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/gauge.js" type="text/javascript"></script>
 <script src="assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
 <script src="assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
 <script src="assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>

@@ -13,7 +13,7 @@
 
             if ($_FILES['fileupload']['name'] == "HEALTH_INFRASTRUCTURE_DAMAGE.csv") {
                 $view_result = submit_health_infrastructure_damages($_SESSION['project'], $imgData, $_SESSION['userid']);
-              echo $view_result;
+             
                 if (isset($view_result) || is_array($view_result)) {
                     $errorarray = $view_result;
                 }
